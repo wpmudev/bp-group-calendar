@@ -1,0 +1,14 @@
+Plugin Name: BP Group Calendar
+Author: Aaron Edwards at uglyrobot.com (for Incsub)
+
+Change Log:
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+1.0.0 - 10/30/2009
+----------------------------------------------------------------------
+- Fixed CSS clearing bug in premium themes: http://premium.wpmudev.org/forums/topic/bp-group-calendar?replies=2#post-17758
+
+1.0.0 - 10/10/2009
+----------------------------------------------------------------------
+- Initial Release.
