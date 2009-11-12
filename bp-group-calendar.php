@@ -1155,8 +1155,8 @@ class BP_Group_Calendar_Widget extends WP_Widget {
 	  $title = $instance['title'];
 		if ( !empty( $title ) ) { echo $before_title . apply_filters('widget_title', $title) . $after_title; };
 		
-		$events = $wpdb->get_results( "SELECT gc.id, gc.user_id, gc.event_title, gc.event_time, gp.name, gp.slug FROM ".$wpdb->base_prefix."bp_groups_calendars WHERE event_time >= '".date('Y-m-d H:i:s')."' ORDER BY event_time ASC LIMIT ".(int)$instance['num_events'] );
-	
+		$events = $wpdb->get_results( "SELECT gc.id, gc.user_id, gc.event_title, gc.event_time, gp.name, gp.slug FROM ".$wpdb->base_prefix."bp_groups_calendars gc LEFT JOIN ".$wpdb->base_prefix."bp_groups gp ON gc.group_id=gp.id WHERE gc.event_time >= '".date('Y-m-d H:i:s')."' AND gp.status = 'public' ORDER BY gc.event_time ASC LIMIT ".(int)$instance['num_events'] );
+
     if ($events) { 
   
       echo '<ul class="events-list">';
