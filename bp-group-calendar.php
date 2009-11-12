@@ -57,6 +57,7 @@ add_action( 'bp_after_group_settings_creation_step', 'bp_group_calendar_settings
 add_action( 'bp_after_group_settings_admin', 'bp_group_calendar_settings');
 add_action( 'wp_head', 'bp_group_calendar_css_output');
 add_action( 'bp_after_group_activity', 'bp_group_calendar_widget_upcoming_events');
+add_action( 'widgets_init', create_function('', 'return register_widget("BP_Group_Calendar_Widget");') );
 
 //------------------------------------------------------------------------//
 
@@ -1134,6 +1135,68 @@ function bp_group_calendar_widget_edit_event($event_id=false) {
   
   //return true if all is well
   return true;
+}
+
+
+class BP_Group_Calendar_Widget extends WP_Widget {
+
+	function BP_Group_Calendar_Widget() {
+		$widget_ops = array('classname' => 'bp_group_calendar', 'description' => __('Displays upcoming public group events.', 'groupcalendar') );
+		$this->WP_Widget('bp_group_calendar', __('Group Events', 'groupcalendar'), $widget_ops);
+	}
+
+	function widget($args, $instance) {
+		global $wpdb, $current_user, $bp;
+		
+		extract( $args );
+		$date_format = __('m/d/Y g:ia', 'groupcalendar');
+		
+		echo $before_widget;	
+	  $title = $instance['title'];
+		if ( !empty( $title ) ) { echo $before_title . apply_filters('widget_title', $title) . $after_title; };
+		
+		$events = $wpdb->get_results( "SELECT * FROM ".$wpdb->base_prefix."bp_groups_calendars WHERE event_time >= '".date('Y-m-d H:i:s')."' ORDER BY event_time ASC LIMIT ".(int)$instance['num_events'] );
+	
+    if ($events) { 
+  
+      echo '<ul class="events-list">';
+      //loop through events
+      foreach ($events as $event) {
+        $class = ($event->user_id==$current_user->ID) ? ' class="my_event"' : '';
+        $events_list .= "\n<li".$class.">";
+        $events_list .= '<a href="'.bp_group_calendar_create_event_url($event->id).'" title="'.__('View Event', 'groupcalendar').'">'.stripslashes($event->event_title).': '.date($date_format, strtotime($event->event_time)).'</a>';        
+        $events_list .= "</li>";
+      }
+      echo $events_list;
+      echo "\n</ul>";
+  
+  } else { ?>
+		<div class="widget-error">
+			<?php _e('There are no upcoming group events.', 'groupcalendar') ?>
+		</div>
+	<?php } ?>
+	
+	<?php echo $after_widget; ?>
+	<?php
+	}
+
+	function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['num_events'] = strip_tags( $new_instance['num_events'] );
+
+		return $instance;
+	}
+
+	function form( $instance ) {
+    $instance = wp_parse_args( (array) $instance, array( 'title' => '', 'num_events' => 10 ) );
+		$title = strip_tags($instance['title']);
+		$num_events = strip_tags($instance['num_events']);
+  ?>
+			<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'groupcalendar') ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo attribute_escape($title); ?>" /></label></p>
+			<p><label for="<?php echo $this->get_field_id('num_events'); ?>"><?php _e('Number of Events:', 'groupcalendar') ?> <input class="widefat" id="<?php echo $this->get_field_id('num_events'); ?>" name="<?php echo $this->get_field_name('num_events'); ?>" type="text" value="<?php echo attribute_escape($num_events); ?>" style="width: 30%" /></label></p>
+	<?php
+	}
 }
 //------------------------------------------------------------------------//
 
