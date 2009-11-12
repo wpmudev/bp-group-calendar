@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: BP Group Calendar
-Version: 1.0.1
+Version: 1.0.2
 Plugin URI: http://incsub.com
 Description: Adds event calendar functionality to Buddypress Groups. Must be activated site-wide.
 Author: Aaron Edwards at uglyrobot.com (for Incsub)
