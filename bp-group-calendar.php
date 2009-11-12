@@ -1198,7 +1198,7 @@ class BP_Group_Calendar_Widget extends WP_Widget {
 	}
 
 	function form( $instance ) {
-    $instance = wp_parse_args( (array) $instance, array( 'title' => '', 'num_events' => 10 ) );
+    $instance = wp_parse_args( (array) $instance, array( 'title' => __('Upcoming Group Events', 'groupcalendar'), 'num_events' => 10 ) );
 		$title = strip_tags($instance['title']);
 		$num_events = strip_tags($instance['num_events']);
   ?>
