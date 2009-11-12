@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: BP Group Calendar
-Version: 1.0.2
+Version: 1.0.3
 Plugin URI: http://incsub.com
 Description: Adds event calendar functionality to Buddypress Groups. Must be activated site-wide.
 Author: Aaron Edwards at uglyrobot.com (for Incsub)
@@ -569,6 +569,14 @@ function bp_group_calendar_css_output() {
       }
     </style>
     <?php
+  } else {
+    ?>
+    <style type="text/css">
+      table.calendar-view {
+        clear:both;
+      }
+    </style>
+    <?php
   }
   
   if (strpos($_SERVER['REQUEST_URI'], '/calendar/') !== false) {
@@ -593,7 +601,7 @@ function bp_group_calendar_css_output() {
   }
 }
 
-function bp_group_calendar_highlighted_events($date='') {
+function bp_group_calendar_highlighted_events($group_id, $date='') {
   global $wpdb;
   
   if ($date) {
@@ -603,7 +611,7 @@ function bp_group_calendar_highlighted_events($date='') {
     $start_date = date('Y-m-', time()).'01 00:00:00';
     $end_date = date('Y-m-d H:i:s', strtotime("-1 second", strtotime("+1 month", strtotime($start_date))));
   }
-  $filter = " WHERE event_time >= '$start_date' AND event_time <= '$end_date'";
+  $filter = " WHERE group_id = $group_id AND event_time >= '$start_date' AND event_time <= '$end_date'";
   
   $events = $wpdb->get_col( "SELECT event_time FROM ".$wpdb->base_prefix."bp_groups_calendars".$filter." ORDER BY event_time ASC" );
   
@@ -629,7 +637,7 @@ function bp_group_calendar_list_events($group_id, $range, $date='', $calendar_ca
   
   if ($range == 'all') {
     
-    $filter = "";
+    $filter = " WHERE group_id = $group_id";
     $empty_message = __('There are no scheduled events', 'groupcalendar');
     
   } else if ($range == 'month') {
@@ -641,25 +649,25 @@ function bp_group_calendar_list_events($group_id, $range, $date='', $calendar_ca
       $start_date = date('Y-m-', time()).'01 00:00:00';
       $end_date = date('Y-m-d H:i:s', strtotime("-1 second", strtotime("+1 month", strtotime($start_date))));
     }
-    $filter = " WHERE event_time >= '$start_date' AND event_time <= '$end_date'";
+    $filter = " WHERE group_id = $group_id AND event_time >= '$start_date' AND event_time <= '$end_date'";
     $empty_message = __('There are no events scheduled for this month', 'groupcalendar');
     
   } else if ($range == 'day') {
   
     $start_date = date('Y-m-d H:i:s', strtotime($date));
     $end_date = date('Y-m-d', strtotime($date)).' 23:59:59';
-    $filter = " WHERE event_time >= '$start_date' AND event_time <= '$end_date'";
+    $filter = " WHERE group_id = $group_id AND event_time >= '$start_date' AND event_time <= '$end_date'";
     $empty_message = __('There are no events scheduled for this day', 'groupcalendar');
     $date_format = 'g:ia';
     
   } else if ($range == 'upcoming') {
   
-    $filter = " WHERE event_time >= '".date('Y-m-d H:i:s')."'";
+    $filter = " WHERE group_id = $group_id AND event_time >= '".date('Y-m-d H:i:s')."'";
     $empty_message = __('There are no upcoming events', 'groupcalendar');
     
   } else if ($range == 'mine') {
   
-    $filter = " WHERE event_time >= '".date('Y-m-d H:i:s')."' AND user_id = ".$current_user->ID;
+    $filter = " WHERE group_id = $group_id AND event_time >= '".date('Y-m-d H:i:s')."' AND user_id = ".$current_user->ID;
     $empty_message = __('You have no scheduled events', 'groupcalendar');
     
   }
@@ -749,7 +757,7 @@ function bp_group_calendar_widget_month($date) {
   
   //first day of month for calulation previous and next months
   $first_day = $cal->year . "-" . $cal->month . "-01";
-  $cal->highlighted_dates = bp_group_calendar_highlighted_events($first_day);
+  $cal->highlighted_dates = bp_group_calendar_highlighted_events(bp_get_group_id(), $first_day);
   $previous_month = $url.date("/Y/m/", strtotime("-1 month", strtotime($first_day)));
   $next_month = $url.date("/Y/m/", strtotime("+1 month", strtotime($first_day)));
   $this_year = $url.date("/Y/", strtotime($first_day));
@@ -808,7 +816,7 @@ function bp_group_calendar_widget_year($date) {
       $cal = new Calendar('', $year, $month);
       $cal->formatted_link_to = $url.'/%Y/%m/%d/';
       $first_day = $cal->year . "-" . $cal->month . "-01";
-      $cal->highlighted_dates = bp_group_calendar_highlighted_events($first_day);
+      $cal->highlighted_dates = bp_group_calendar_highlighted_events(bp_get_group_id(), $first_day);
       echo '<div class="year-cal-item">';
       print($cal->output_calendar());
       echo '</div>';

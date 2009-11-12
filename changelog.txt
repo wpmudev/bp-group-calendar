@@ -5,6 +5,10 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+1.0.3 - 11/12/2009
+----------------------------------------------------------------------
+- Fixed major bug displaying all events in every group: http://premium.wpmudev.org/forums/topic/bp-group-calendar?replies=8#post-19531
+
 1.0.2 - 11/11/2009
 ----------------------------------------------------------------------
 - Added a widget to display upcoming events from public groups

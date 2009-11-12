@@ -19,7 +19,6 @@ form#add-event-form select {
 table.calendar-view {
   width: 90%;
   margin: 0 5%;
-  clear:both;
 }
 table.calendar-view td.cal-left {
   width: 10%;
