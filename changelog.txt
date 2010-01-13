@@ -11,6 +11,7 @@ Change Log:
 - Ability to enable 24 hour time and change week start in plugin header
 - Suppress errors when plugin is activated without BP or BP theme active
 - Bug fix that displayed menu in private groups when not a member: http://premium.wpmudev.org/forums/topic/calendar-menu-should-not-be-showed-in-private-groups-if-you-are-not-a-member
+- Updates notification support
 
 1.0.3 - 11/12/2009
 ----------------------------------------------------------------------

@@ -7,6 +7,7 @@ Description: Adds event calendar functionality to Buddypress Groups. Must be act
 Author: Aaron Edwards at uglyrobot.com (for Incsub)
 Author URI: http://uglyrobot.com
 Site Wide Only: true
+WDP ID: 109
 
 Copyright 2010 Incsub (http://incsub.com)
 
