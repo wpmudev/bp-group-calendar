@@ -92,7 +92,7 @@ table.calendar td.selected {
 	border: 1px dotted #ff7800;
 	}
 table.calendar td.highlighted {
-	background: #fc9!important;
+	background: #fc9;
 	}
 	
 table.calendar td:hover, table.calendar td.today:hover, 

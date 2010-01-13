@@ -5,6 +5,13 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+1.0.4 - 1/13/2010
+----------------------------------------------------------------------
+- Major rewrite of localization to support date and time formats: http://premium.wpmudev.org/forums/topic/suggested-improvement-for-bp-group-calendar-date-and-time-format, http://premium.wpmudev.org/forums/topic/localize-months-names-and-day-names-for-bp-group-calendar
+- Ability to enable 24 hour time and change week start in plugin header
+- Suppress errors when plugin is activated without BP or BP theme active
+- Bug fix that displayed menu in private groups when not a member: http://premium.wpmudev.org/forums/topic/calendar-menu-should-not-be-showed-in-private-groups-if-you-are-not-a-member
+
 1.0.3 - 11/12/2009
 ----------------------------------------------------------------------
 - Fixed major bug displaying all events in every group: http://premium.wpmudev.org/forums/topic/bp-group-calendar?replies=8#post-19531

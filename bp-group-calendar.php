@@ -1,14 +1,14 @@
 <?php
 /*
 Plugin Name: BP Group Calendar
-Version: 1.0.3
+Version: 1.0.4
 Plugin URI: http://incsub.com
 Description: Adds event calendar functionality to Buddypress Groups. Must be activated site-wide.
 Author: Aaron Edwards at uglyrobot.com (for Incsub)
 Author URI: http://uglyrobot.com
 Site Wide Only: true
 
-Copyright 2009 Incsub (http://incsub.com)
+Copyright 2010 Incsub (http://incsub.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License (Version 2 - GPLv2) as published by
@@ -24,14 +24,18 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-
-$bp_group_calendar_current_version = '1.0.0';
-
 //------------------------------------------------------------------------//
 
 //---Config---------------------------------------------------------------//
 
 //------------------------------------------------------------------------//
+
+$bp_group_calendar_current_version = '1.0.0';
+
+//////// Default locale settings: ///////////////////////////////
+// change week_start value to ISO-8601 day of week (7=Sun, 1=Mon)
+// Change time_format to 12 or 24 hour
+$bgc_locale = array('week_start' => 1, 'time_format' => 24);
 
 //include calendar class
 require_once(WP_PLUGIN_DIR . '/bp-group-calendar/groupcalendar/calendar.class.php');
@@ -66,9 +70,15 @@ add_action( 'widgets_init', create_function('', 'return register_widget("BP_Grou
 //------------------------------------------------------------------------//
 
 function bp_group_calendar_localization() {
+  global $bgc_locale;
   // Load up the localization file if we're using WordPress in a different language
 	// Place it in this plugin's "languages" folder and name it "bp-group-calendar-[value in wp-config].mo"
 	load_plugin_textdomain( 'groupcalendar', FALSE, '/bp-group-calendar/languages' );
+
+	if (get_locale())
+    setlocale(LC_TIME, get_locale()); //for date translations in php
+	$temp_locales = explode('_', get_locale());
+	$bgc_locale['code'] = ($temp_locales[0]) ? $temp_locales[0] : 'en';
 }
 
 function bp_group_calendar_make_current() {
@@ -125,7 +135,10 @@ function bp_group_calendar_global_install() {
 function bp_group_calendar_menu() {
 
 	global $bp, $current_blog, $group_obj;
-
+  
+  if (!class_exists(BP_Groups_Group))
+    return;
+  
 	if ( $group_id = BP_Groups_Group::group_exists($bp->current_action) ) {
 
 		/* This is a single group page. */
@@ -142,7 +155,7 @@ function bp_group_calendar_menu() {
 
 	/* Add the subnav item only to the single group nav item */
 	if ( $bp->is_single_item )
-    bp_core_new_subnav_item( array( 'name' => __( 'Calendar', 'groupcalendar' ), 'slug' => 'calendar', 'parent_url' => $groups_link, 'parent_slug' => $bp->groups->slug, 'screen_function' => 'bp_group_calendar', 'position' => 35, 'item_css_id' => 'group-calendar' ) );
+    bp_core_new_subnav_item( array( 'name' => __( 'Calendar', 'groupcalendar' ), 'slug' => 'calendar', 'parent_url' => $groups_link, 'parent_slug' => $bp->groups->slug, 'screen_function' => 'bp_group_calendar', 'position' => 35, 'item_css_id' => 'group-calendar', 'user_has_access' => $bp->groups->current_group->user_has_access ) );
 
 }
 
@@ -280,8 +293,8 @@ function bp_group_calendar_event_add_action_message($new, $event_id, $event_date
     $created_type = __('modified', 'groupcalendar');
     $component_action = 'edit_calendar_event';
   }
-  
-  $date = date(__('m/d/Y g:ia', 'groupcalendar'), strtotime($event_date));
+  //see http://us2.php.net/manual/function.strftime.php
+  $date = strftime(__('%m/%d/%Y %I:%M %p', 'groupcalendar'), strtotime($event_date));
   
   /* Record this in group activity stream */
 	$activity_content = sprintf( __( '%s %s an event for the group %s:', 'groupcalendar'), bp_core_get_userlink( $bp->loggedin_user->id ), $created_type, '<a href="' . bp_get_group_permalink( $bp->groups->current_group ) . '">' . attribute_escape( $bp->groups->current_group->name ) . '</a>' );
@@ -580,13 +593,16 @@ function bp_group_calendar_css_output() {
   }
   
   if (strpos($_SERVER['REQUEST_URI'], '/calendar/') !== false) {
+    global $bgc_locale;
     ?>
     <link type="text/css" href="<?php echo $css_url; ?>group_calendar.css" rel="stylesheet" />
     <link type="text/css" href="<?php echo $css_url; ?>datepicker/css/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />	
   	<script type="text/javascript" src="<?php echo $css_url; ?>datepicker/js/jquery-ui-1.7.2.custom.min.js"></script>
+    <script type="text/javascript" src="<?php echo $css_url; ?>datepicker/js/jquery-ui-i18n.min.js"></script>
   	<script type="text/javascript">
-  	  jQuery(document).ready(function () {
-  		  jQuery('#event-date').datepicker({changeMonth: true, changeYear: true});
+  	  jQuery(document).ready(function ($) {
+  	    jQuery.datepicker.setDefaults(jQuery.datepicker.regional['<?php echo $bgc_locale['code']; ?>']);
+  		  jQuery('#event-date').datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, firstDay: <?php echo $bgc_locale['week_start']; ?>});
   		  jQuery('a#event-delete-link').click(function() {
             var answer = confirm("<?php _e('Are you sure you want to delete this event?', 'groupcalendar'); ?>")
             if (answer){
@@ -633,7 +649,8 @@ function bp_group_calendar_highlighted_events($group_id, $date='') {
 function bp_group_calendar_list_events($group_id, $range, $date='', $calendar_capabilities, $show_all = 0) {
   global $wpdb, $current_user;
   
-  $date_format = __('m/d/Y g:ia', 'groupcalendar');
+  //see http://us2.php.net/manual/function.strftime.php
+  $date_format = __('%m/%d/%Y %I:%M %p', 'groupcalendar');
   
   if ($range == 'all') {
     
@@ -658,7 +675,8 @@ function bp_group_calendar_list_events($group_id, $range, $date='', $calendar_ca
     $end_date = date('Y-m-d', strtotime($date)).' 23:59:59';
     $filter = " WHERE group_id = $group_id AND event_time >= '$start_date' AND event_time <= '$end_date'";
     $empty_message = __('There are no events scheduled for this day', 'groupcalendar');
-    $date_format = 'g:ia';
+    //see http://us2.php.net/manual/function.strftime.php
+    $date_format = __('%I:%M %p', 'groupcalendar');
     
   } else if ($range == 'upcoming') {
   
@@ -685,7 +703,7 @@ function bp_group_calendar_list_events($group_id, $range, $date='', $calendar_ca
       $class = ($event->user_id==$current_user->ID) ? ' class="my_event"' : '';
       
       $events_list .= "\n<li".$class.">";
-      $events_list .= '<a href="'.bp_group_calendar_create_event_url($event->id).'" title="'.__('View Event', 'groupcalendar').'">'.stripslashes($event->event_title).': '.date($date_format, strtotime($event->event_time)).'</a>';
+      $events_list .= '<a href="'.bp_group_calendar_create_event_url($event->id).'" title="'.__('View Event', 'groupcalendar').'">'.stripslashes($event->event_title).': '.strftime($date_format, strtotime($event->event_time)).'</a>';
       
       //add edit link if allowed
       if ($calendar_capabilities == 'full' || ($calendar_capabilities == 'limited' && $event->user_id==$current_user->ID)) {
@@ -712,25 +730,26 @@ function bp_group_calendar_list_events($group_id, $range, $date='', $calendar_ca
 //widgets
 
 function bp_group_calendar_widget_day($date) {
-  global $bp;
+  global $bp, $bgc_locale;
   
   $calendar_capabilities = bp_group_calendar_get_capabilities();
   
   $day = $date['year'].'-'.$date['month'].'-'.$date['day'];
 
   $cal = new Calendar($date['day'], $date['year'], $date['month']);
+  $cal->week_start = $bgc_locale['week_start'];
   $url = bp_get_group_permalink( $bp->groups->current_group ).'/calendar';
   $cal->formatted_link_to = $url.'/%Y/%m/%d/';
   ?>
   <div class="bp-widget">
-		<h4><?php _e('Day View', 'groupcalendar'); ?>: <?php echo date(__('m/d/Y', 'groupcalendar'), strtotime($day)); ?></h4>
+		<h4><?php _e('Day View', 'groupcalendar'); ?>: <?php echo strftime(__('%m/%d/%Y', 'groupcalendar'), strtotime($day)); ?></h4>
 		<table class="calendar-view">
       <tr>
         <td class="cal-left">
           <?php print($cal->output_calendar()); ?>
         </td>
         <td class="cal-right">
-          <h5 class="events-title"><?php _e("Events For", 'groupcalendar'); ?> <?php echo date(__('l, F jS, Y', 'groupcalendar'), strtotime($day)); ?>:</h5>
+          <h5 class="events-title"><?php _e("Events For", 'groupcalendar'); ?> <?php echo strftime(__('%x', 'groupcalendar'), strtotime($day)); ?>:</h5>
           <?php bp_group_calendar_list_events(bp_get_group_id(), 'day', $day, $calendar_capabilities); ?>
         </td>
       </tr> 
@@ -740,7 +759,7 @@ function bp_group_calendar_widget_day($date) {
 }
 
 function bp_group_calendar_widget_month($date) {
-  global $bp;
+  global $bp, $bgc_locale;
   
   $calendar_capabilities = bp_group_calendar_get_capabilities();
   
@@ -752,6 +771,7 @@ function bp_group_calendar_widget_month($date) {
     $cal = new Calendar();
   }
   
+  $cal->week_start = $bgc_locale['week_start'];
   $url = bp_get_group_permalink( $bp->groups->current_group ).'/calendar';
   $cal->formatted_link_to = $url.'/%Y/%m/%d/';
   
@@ -764,7 +784,7 @@ function bp_group_calendar_widget_month($date) {
   ?>
   <div class="bp-widget">
 		<h4>
-    <?php _e('Month View', 'groupcalendar'); ?>: <?php echo date(__('M, Y', 'groupcalendar'), strtotime($first_day)); ?>
+    <?php _e('Month View', 'groupcalendar'); ?>: <?php echo strftime(__('%B, %Y', 'groupcalendar'), strtotime($first_day)); ?>
       <span>
         <a title="<?php _e('Previous Month', 'groupcalendar'); ?>" href="<?php echo $previous_month; ?>">&larr; <?php _e('Previous', 'groupcalendar'); ?></a> | 
         <a title="<?php _e('Full Year', 'groupcalendar'); ?>" href="<?php echo $this_year; ?>"><?php _e('Year', 'groupcalendar'); ?></a> | 
@@ -777,7 +797,7 @@ function bp_group_calendar_widget_month($date) {
           <?php print($cal->output_calendar()); ?>
         </td>
         <td class="cal-right">
-          <h5 class="events-title"><?php _e('Events For', 'groupcalendar'); ?> <?php echo date(__('F, Y', 'groupcalendar'), strtotime($first_day)); ?>:</h5>
+          <h5 class="events-title"><?php _e('Events For', 'groupcalendar'); ?> <?php echo strftime(__('%B, %Y', 'groupcalendar'), strtotime($first_day)); ?>:</h5>
     		  <?php bp_group_calendar_list_events(bp_get_group_id(), 'month', $first_day, $calendar_capabilities); ?>
         </td>
       </tr>   
@@ -788,7 +808,7 @@ function bp_group_calendar_widget_month($date) {
 }
 
 function bp_group_calendar_widget_year($date) {
-  global $bp;
+  global $bp, $bgc_locale;
   
   $calendar_capabilities = bp_group_calendar_get_capabilities();
   
@@ -814,6 +834,7 @@ function bp_group_calendar_widget_year($date) {
     //loop through years
     for ($i = 1; $i <= 12; $i++) {
       $cal = new Calendar('', $year, $month);
+      $cal->week_start = $bgc_locale['week_start'];
       $cal->formatted_link_to = $url.'/%Y/%m/%d/';
       $first_day = $cal->year . "-" . $cal->month . "-01";
       $cal->highlighted_dates = bp_group_calendar_highlighted_events(bp_get_group_id(), $first_day);
@@ -878,9 +899,9 @@ function bp_group_calendar_widget_event_display($event_id) {
   $map_url = 'http://maps.google.com/maps?hl=en&q='.urlencode(stripslashes($event->event_location));
   
   $event_created_by = bp_core_get_userlink($event->user_id);
-  $event_created = date(__('m/d/Y \a\t g:ia', 'groupcalendar'), $event->created_stamp);
+  $event_created = strftime(__('%m/%d/%Y at %I:%M %p', 'groupcalendar'), $event->created_stamp);
   $event_modified_by = bp_core_get_userlink($event->last_edited_id);
-  $event_last_modified = date(__('m/d/Y \a\t g:ia', 'groupcalendar'), $event->last_edited_stamp);
+  $event_last_modified = strftime(__('%m/%d/%Y at %I:%M %p', 'groupcalendar'), $event->last_edited_stamp);
   
   $event_meta = '<span class="event-meta">'.sprintf(__('Created by %1$s on %2$s. Last modified by %3$s on %4$s.', 'groupcalendar'), $event_created_by, $event_created, $event_modified_by, $event_last_modified).'</span>';
 
@@ -892,7 +913,7 @@ function bp_group_calendar_widget_event_display($event_id) {
     </h4>
     
     <h5 class="events-title"><?php echo stripslashes($event->event_title); ?></h5>
-    <span class="activity"><?php echo date(__('l, F jS, Y \a\t g:ia', 'groupcalendar'), strtotime($event->event_time)); ?></span>
+    <span class="activity"><?php echo strftime(__('%m/%d/%Y at %I:%M %p', 'groupcalendar'), strtotime($event->event_time)); ?></span>
     
     <?php if ($event->event_description) : ?>
       <h6 class="event-label"><?php _e('Description:', 'groupcalendar'); ?></h6>
@@ -923,7 +944,7 @@ function bp_group_calendar_widget_event_display($event_id) {
 
 
 function bp_group_calendar_widget_create_event($date) {
-  global $bp;
+  global $bp, $bgc_locale;
   
   $calendar_capabilities = bp_group_calendar_get_capabilities();
   
@@ -935,7 +956,7 @@ function bp_group_calendar_widget_create_event($date) {
   if ( !empty($date['year']) && !empty($date['month']) && !empty($date['day']) ) {
     $timestamp = strtotime($date['month'].'/'.$date['day'].'/'.$date['year']);
     if ($timestamp >= time())
-      $default_date = date('m/d/Y', $timestamp);
+      $default_date = date('Y-m-d', $timestamp);
   }
   
   $url = bp_get_group_permalink( $bp->groups->current_group ).'/calendar/';
@@ -953,7 +974,9 @@ function bp_group_calendar_widget_create_event($date) {
 			<label for="event-time"><?php _e('Time', 'groupcalendar'); ?> *
 			<select name="event-hour" id="event-hour">
 		    <?php
-        for ($i = 1; $i <= 12; $i++) {
+		    if ($bgc_locale['time_format']==24)
+          $bgc_locale['time_format'] = 23;
+        for ($i = 1; $i <= $bgc_locale['time_format']; $i++) {
           $hour_check = ($i == 7) ? ' selected="selected"' : '';
           echo '<option value="'.$i.'"'.$hour_check.'>'.$i."</option>\n";
         }
@@ -965,10 +988,12 @@ function bp_group_calendar_widget_create_event($date) {
 		    <option value="30">:30</option>
 		    <option value="45">:45</option>
 			</select>
+			<?php if ($bgc_locale['time_format']==12) : ?>
 			<select name="event-ampm" id="event-ampm">
 		    <option value="am">am</option>
 		    <option value="pm">pm</option>
 			</select>
+			<?php endif; ?>
       </label>
 			
 			<label for="event-desc"><?php _e('Description', 'groupcalendar'); ?></label>
@@ -996,7 +1021,7 @@ function bp_group_calendar_widget_create_event($date) {
 
 
 function bp_group_calendar_widget_edit_event($event_id=false) {
-  global $wpdb, $current_user, $bp;
+  global $wpdb, $current_user, $bp, $bgc_locale;
   
   $url = bp_get_group_permalink( $bp->groups->current_group ).'/calendar/';
   
@@ -1030,7 +1055,8 @@ function bp_group_calendar_widget_edit_event($event_id=false) {
     //check for valid date/time
     $tmp_date = strtotime($event->event_time);
     if ($tmp_date) {
-      $event_date = date('m/d/Y', $tmp_date);
+      $event_date = date('Y-m-d', $tmp_date);
+      
       $event_hour = date('g', $tmp_date);
       $event_minute = date('i', $tmp_date);
       $event_ampm = date('a', $tmp_date);
@@ -1043,9 +1069,9 @@ function bp_group_calendar_widget_edit_event($event_id=false) {
     $event_map = ($event->event_map == 1) ? ' checked="checked"' : '';
     
     $event_created_by = bp_core_get_userlink($event->user_id);
-    $event_created = date(__('m/d/Y \a\t g:ia', 'groupcalendar'), $event->created_stamp);
+    $event_created = strftime(__('%m/%d/%Y at %I:%M %p', 'groupcalendar'), $event->created_stamp);
     $event_modified_by = bp_core_get_userlink($event->last_edited_id);
-    $event_last_modified = date(__('m/d/Y \a\t g:ia', 'groupcalendar'), $event->last_edited_stamp);
+    $event_last_modified = strftime(__('%m/%d/%Y at %I:%M %p', 'groupcalendar'), $event->last_edited_stamp);
     
     $event_meta = '<span class="event-meta">'.sprintf(__('Created by %1$s on %2$s. Last modified by %3$s on %4$s.', 'groupcalendar'), $event_created_by, $event_created, $event_modified_by, $event_last_modified).'</span>';
     
@@ -1064,8 +1090,13 @@ function bp_group_calendar_widget_edit_event($event_id=false) {
     
     //check for valid date/time
     if ($tmp_date && $tmp_date >= time()) {
-      $event_date = date('m/d/Y', $tmp_date);
-      $event_hour = date('g', $tmp_date);
+      $event_date = date('Y-m-d', $tmp_date);
+      
+      if ($bgc_locale['time_format']==12)
+        $event_hour = date('g', $tmp_date);
+      else
+        $event_hour = date('G', $tmp_date);
+        
       $event_minute = date('i', $tmp_date);
       $event_ampm = date('a', $tmp_date);
     } else {
@@ -1095,7 +1126,9 @@ function bp_group_calendar_widget_edit_event($event_id=false) {
 			<label for="event-time"><?php _e('Time', 'groupcalendar'); ?> *
 			<select name="event-hour" id="event-hour">
 			  <?php
-        for ($i = 1; $i <= 12; $i++) {
+			  if ($bgc_locale['time_format']==24)
+          $bgc_locale['time_format'] = 23;
+        for ($i = 1; $i <= $bgc_locale['time_format']; $i++) {
           $hour_check = ($i == $event_hour) ? ' selected="selected"' : '';
           echo '<option value="'.$i.'"'.$hour_check.'>'.$i."</option>\n";
         }
@@ -1107,10 +1140,12 @@ function bp_group_calendar_widget_edit_event($event_id=false) {
 		    <option value="30"<?php echo ($event_minute=='30') ? ' selected="selected"' : ''; ?>>:30</option>
 		    <option value="45"<?php echo ($event_minute=='45') ? ' selected="selected"' : ''; ?>>:45</option>
 			</select>
+			<?php if ($bgc_locale['time_format']==12) : ?>
 			<select name="event-ampm" id="event-ampm">
 		    <option value="am"<?php echo ($event_ampm=='am') ? ' selected="selected"' : ''; ?>>am</option>
 		    <option value="pm"<?php echo ($event_ampm=='pm') ? ' selected="selected"' : ''; ?>>pm</option>
 			</select>
+			<?php endif; ?>
       </label>
 			
 			<label for="event-desc"><?php _e('Description', 'groupcalendar'); ?></label>
@@ -1157,13 +1192,14 @@ class BP_Group_Calendar_Widget extends WP_Widget {
 		global $wpdb, $current_user, $bp;
 		
 		extract( $args );
-		$date_format = __('m/d/Y g:ia', 'groupcalendar');
+		//see http://us2.php.net/manual/function.strftime.php
+		$date_format = __('%m/%d/%Y %I:%M %p', 'groupcalendar');
 		
 		echo $before_widget;	
 	  $title = $instance['title'];
 		if ( !empty( $title ) ) { echo $before_title . apply_filters('widget_title', $title) . $after_title; };
 		
-		$events = $wpdb->get_results( "SELECT gc.id, gc.user_id, gc.event_title, gc.event_time, gp.name, gp.slug FROM ".$wpdb->base_prefix."bp_groups_calendars gc LEFT JOIN ".$wpdb->base_prefix."bp_groups gp ON gc.group_id=gp.id WHERE gc.event_time >= '".date('Y-m-d H:i:s')."' AND gp.status = 'public' ORDER BY gc.event_time ASC LIMIT ".(int)$instance['num_events'] );
+		$events = $wpdb->get_results( "SELECT gc.id, gc.user_id, gc.event_title, gc.event_time, gp.name, gp.slug FROM ".$wpdb->base_prefix."bp_groups_calendars gc JOIN ".$wpdb->base_prefix."bp_groups gp ON gc.group_id=gp.id WHERE gc.event_time >= '".date('Y-m-d H:i:s')."' AND gp.status = 'public' ORDER BY gc.event_time ASC LIMIT ".(int)$instance['num_events'] );
 
     if ($events) { 
   
@@ -1173,7 +1209,7 @@ class BP_Group_Calendar_Widget extends WP_Widget {
         $class = ($event->user_id==$current_user->ID) ? ' class="my_event"' : '';
         $events_list .= "\n<li".$class.">";
         $url = $bp->root_domain.'/'.$bp->groups->slug.'/'.$event->slug.'/calendar/event/'.$event->id.'/';
-        $events_list .= stripslashes($event->name).'<br /><a href="'.$url.'" title="'.__('View Event', 'groupcalendar').'">'.stripslashes($event->event_title).': '.date($date_format, strtotime($event->event_time)).'</a>';        
+        $events_list .= stripslashes($event->name).'<br /><a href="'.$url.'" title="'.__('View Event', 'groupcalendar').'">'.stripslashes($event->event_title).': '.strftime($date_format, strtotime($event->event_time)).'</a>';        
         $events_list .= "</li>";
       }
       echo $events_list;
