@@ -73,7 +73,7 @@ add_action( 'widgets_init', create_function('', 'return register_widget("BP_Grou
 function bp_group_calendar_localization() {
   global $bgc_locale;
   // Load up the localization file if we're using WordPress in a different language
-	// Place it in this plugin's "languages" folder and name it "bp-group-calendar-[value in wp-config].mo"
+	// Place it in this plugin's "languages" folder and name it "groupcalendar-[value in wp-config].mo"
 	load_plugin_textdomain( 'groupcalendar', FALSE, '/bp-group-calendar/languages' );
 
 	if (get_locale())
