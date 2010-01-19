@@ -5,6 +5,12 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+1.0.5 - 1/19/2010
+----------------------------------------------------------------------
+- WPMU 2.9.1+ support
+- Better date localization: uses main blog date and time settings for everything. date, time, 24 hour, week start
+- Config setting in plugin header for default permissions for existing blogs
+
 1.0.4 - 1/13/2010
 ----------------------------------------------------------------------
 - Major rewrite of localization to support date and time formats: http://premium.wpmudev.org/forums/topic/suggested-improvement-for-bp-group-calendar-date-and-time-format, http://premium.wpmudev.org/forums/topic/localize-months-names-and-day-names-for-bp-group-calendar
