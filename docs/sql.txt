@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS `wp_bp_groups_calendars` (
+
+  `id` bigint(20) unsigned NOT NULL auto_increment,
+  `group_id` bigint(20) NOT NULL default '0',
+  `user_id` bigint(20) NOT NULL default '0',
+  `event_time` DATETIME NOT NULL,
+  `event_title` TEXT NOT NULL,
+  `event_description` TEXT,
+  `event_location` TEXT,
+  `event_map` BOOL NOT NULL,
+  `created_stamp` bigint(30) NOT NULL,
+  `last_edited_id` bigint(20) NOT NULL default '0',
+  `last_edited_stamp` bigint(30) NOT NULL,
+
+  PRIMARY KEY  (`id`)
+
+) ENGINE=MyISAM CHARACTER SET utf8 COLLATE utf8_general_ci;
