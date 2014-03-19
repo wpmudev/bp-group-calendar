@@ -1,0 +1,142 @@
+Plugin Name: BuddyPress Group Calendar
+Author: Aaron Edwards (Incsub)
+
+Change Log:
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+1.3.8 - 3/19/2014
+----------------------------------------------------------------------
+- Fix: Entities problem with quotes in event emails http://wp.mu/91j
+- Fix: Timezone issues. Force storing time as GMT, then always display with timezone offset. http://wp.mu/91i
+
+1.3.7 - 2/28/2014
+----------------------------------------------------------------------
+- Graceful handling when Groups module is not enabled
+
+1.3.6 - 6/27/2013
+----------------------------------------------------------------------
+- Fix issues with the datepicker in some themes. Use WP's built in
+- Change default datepicker css to be more mellow
+- Spruce up the setting form output code for better theme compatibility
+
+1.3.5 - 5/31/2013
+----------------------------------------------------------------------
+- Fix event link id in notification email that was wrong
+- Fix some php notices
+
+1.3.4 - 4/19/2013
+----------------------------------------------------------------------
+- Fix typo in jquery ui i18n
+- SQL injection hardening
+
+1.3.3 - 9/16/2012
+----------------------------------------------------------------------
+- Load scripts and css via proper enqueue methods
+
+1.3.2 - 8/6/2012
+----------------------------------------------------------------------
+- Fix auto install plugin header issues
+
+1.3.1 - 4/24/2012
+----------------------------------------------------------------------
+- Add visual editor support to event descriptions
+
+1.3 - 3/1/2012
+----------------------------------------------------------------------
+- Further fix support for custom group slug in widgets
+- Fix various php notices
+
+1.2.9 - 2/15/2012
+----------------------------------------------------------------------
+- Fix support for custom group slug in widgets
+
+1.2.8 - 9/15/2011
+----------------------------------------------------------------------
+- Fix missing widgets in BP 1.5
+
+1.2.7 - 9/02/2011
+----------------------------------------------------------------------
+- BP 1.5 compatibility
+- Fix localization loading
+
+1.2.6 - 4/04/2011
+----------------------------------------------------------------------
+- Fix to plugin name in header
+
+1.2.5 - 4/01/2011
+----------------------------------------------------------------------
+- Fix to language of Google map link to match blog language
+
+1.2.4 - 2/25/2011
+----------------------------------------------------------------------
+- Additional date i18n
+
+1.2.3 - 1/05/2011
+----------------------------------------------------------------------
+- WP 3.1 Compatibility
+- Delete activity items when an event is deleted
+- Additional date i18n
+
+1.2.2 - 7/15/2010
+----------------------------------------------------------------------
+- Now sets the group last updated variable
+- Hides the My Event widget from logged out users
+
+1.2.1 - 5/11/2010
+----------------------------------------------------------------------
+- A small bug fix introduced in 1.2 (checked() function not declared on member page)
+
+1.2 - 5/11/2010
+----------------------------------------------------------------------
+- Added "User's group events" widget to show upcoming events for groups the logged in user is member of.
+- Added email notification of new events. Configurable by group admins and individual users
+- Fixed defines for default settings at head of file. Choose default permissions
+- WP 3.0 Compatibility
+
+1.1.2 - 3/25/2010
+----------------------------------------------------------------------
+- Fixed the event link in widgets (bug in 1.1)
+
+1.1.1 - 3/23/2010
+----------------------------------------------------------------------
+- A small bug fix introduced in 1.1 (hour dropdown problems)
+
+1.1 - 3/23/2010
+----------------------------------------------------------------------
+- Fixed bug in BP 1.2 that messed up event url formatting (added //)
+- Fixed permissions bug that prevented users or mods with limited permission from editing their own events
+- Fixed activity stream notifications in BP 1.2
+- Added a loader to prevent deadly errors when BP is deactivated
+- Added a "Single Group Events" multi widget that allows you to display events from a chosen group
+- Added a default .po translation file in the /languages/ folder
+
+1.0.5 - 1/19/2010
+----------------------------------------------------------------------
+- WPMU 2.9.1+ support
+- Better date localization: uses main blog date and time settings for everything. date, time, 24 hour, week start
+- Config setting in plugin header for default permissions for existing blogs
+
+1.0.4 - 1/13/2010
+----------------------------------------------------------------------
+- Major rewrite of localization to support date and time formats: http://premium.wpmudev.org/forums/topic/suggested-improvement-for-bp-group-calendar-date-and-time-format, http://premium.wpmudev.org/forums/topic/localize-months-names-and-day-names-for-bp-group-calendar
+- Ability to enable 24 hour time and change week start in plugin header
+- Suppress errors when plugin is activated without BP or BP theme active
+- Bug fix that displayed menu in private groups when not a member: http://premium.wpmudev.org/forums/topic/calendar-menu-should-not-be-showed-in-private-groups-if-you-are-not-a-member
+- Updates notification support
+
+1.0.3 - 11/12/2009
+----------------------------------------------------------------------
+- Fixed major bug displaying all events in every group: http://premium.wpmudev.org/forums/topic/bp-group-calendar?replies=8#post-19531
+
+1.0.2 - 11/11/2009
+----------------------------------------------------------------------
+- Added a widget to display upcoming events from public groups
+
+1.0.1 - 10/30/2009
+----------------------------------------------------------------------
+- Fixed CSS clearing bug in premium themes: http://premium.wpmudev.org/forums/topic/bp-group-calendar?replies=2#post-17758
+
+1.0.0 - 10/10/2009
+----------------------------------------------------------------------
+- Initial Release.
