@@ -765,7 +765,8 @@ function bp_group_calendar_highlighted_events($group_id, $date='') {
 
 		$highlighted_events = array();
 		foreach ($events as $event) {
-			$highlighted_events[] = date('Y-m-d', strtotime($event));
+			$tmp_date = strtotime($event) + ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS );
+			$highlighted_events[] = date('Y-m-d', $tmp_date);
 		}
 
 		return $highlighted_events;
