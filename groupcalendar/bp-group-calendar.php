@@ -119,14 +119,6 @@ if ( class_exists( 'BP_Group_Extension' ) ) {
 	
 		}
 	
-		function create_screen() { }
-	
-		function create_screen_save() { }
-	
-		function edit_screen() { }
-	
-		function edit_screen_save() {	}
-	
 		function display() {
 			global $bp;
 			$event_id = bp_group_calendar_event_url_parse();
@@ -282,7 +274,7 @@ function bp_group_calendar_event_save() {
 
 		$event_description = wp_filter_post_kses(wpautop($_POST['event-desc']));
 		$event_location = esc_attr(strip_tags(trim($_POST['event-loc'])));
-		$event_map = ($_POST['event-map']==1) ? 1 : 0;
+		$event_map = (isset($_POST['event-map']) && $_POST['event-map']==1) ? 1 : 0;
 
 		//editing previous event
 		if (isset($_POST['event-id'])) {
@@ -409,7 +401,7 @@ function bp_group_calendar_event_email($new, $event_id, $event_date, $event_titl
 
 	foreach ($user_ids as $user_id) {
 		//skip opt-outs
-		if ( 'no' == get_usermeta( $user_id, 'notification_groups_calendar_event' ) )
+		if ( 'no' == get_user_meta( $user_id, 'notification_groups_calendar_event', true ) )
 		continue;
 
 		$ud = get_userdata( $user_id );
@@ -751,13 +743,14 @@ function bp_group_calendar_highlighted_events($group_id, $date='') {
 	global $wpdb;
 
 	if ($date) {
-		$start_date = date('Y-m-', strtotime($date)).'01 00:00:00';
-		$end_date = date('Y-m-d H:i:s', strtotime("-1 second", strtotime("+1 month", strtotime($start_date))));
+		$start_date = date('Y-m-d H:i:s', strtotime(date('Y-m-', strtotime($date)).'01 00:00:00') - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) );
+		$end_date = date('Y-m-d H:i:s', strtotime("+1 month", strtotime($date)) - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) );
 	} else {
-		$start_date = date('Y-m-', time()).'01 00:00:00';
-		$end_date = date('Y-m-d H:i:s', strtotime("-1 second", strtotime("+1 month", strtotime($start_date))));
+		$start_date = date('Y-m-d H:i:s', strtotime(date('Y-m-').'01 00:00:00') - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) );
+		$end_date = date('Y-m-d H:i:s', strtotime("+1 month", strtotime($start_date)));
 	}
-	$filter = $wpdb->prepare(" WHERE group_id = %d AND event_time >= %s AND event_time <= %s", $group_id, $start_date, $end_date);
+
+	$filter = $wpdb->prepare(" WHERE group_id = %d AND event_time >= %s AND event_time < %s", $group_id, $start_date, $end_date);
 
 	$events = $wpdb->get_col( "SELECT event_time FROM ".$wpdb->base_prefix."bp_groups_calendars".$filter." ORDER BY event_time ASC" );
 
@@ -791,19 +784,19 @@ function bp_group_calendar_list_events($group_id, $range, $date='', $calendar_ca
 	} else if ($range == 'month') {
 
 		if ($date) {
-			$start_date = date('Y-m-', strtotime($date)).'01 00:00:00';
-			$end_date = date('Y-m-d H:i:s', strtotime("-1 second", strtotime("+1 month", strtotime($start_date))));
+			$start_date = date('Y-m-d H:i:s', strtotime(date('Y-m-', strtotime($date)).'01 00:00:00') - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) );
+			$end_date = date('Y-m-d H:i:s', strtotime("+1 month", strtotime($date)) - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) );
 		} else {
-			$start_date = date('Y-m-', time()).'01 00:00:00';
-			$end_date = date('Y-m-d H:i:s', strtotime("-1 second", strtotime("+1 month", strtotime($start_date))));
+			$start_date = date('Y-m-d H:i:s', strtotime(date('Y-m-').'01 00:00:00') - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) );
+			$end_date = date('Y-m-d H:i:s', strtotime("+1 month", strtotime($start_date)));
 		}
-		$filter = " WHERE group_id = $group_id AND event_time >= '$start_date' AND event_time <= '$end_date'";
+		$filter = " WHERE group_id = $group_id AND event_time >= '$start_date' AND event_time < '$end_date'";
 		$empty_message = __('There are no events scheduled for this month', 'groupcalendar');
 
 	} else if ($range == 'day') {
 
-		$start_date = date('Y-m-d H:i:s', strtotime($date));
-		$end_date = date('Y-m-d', strtotime($date)).' 23:59:59';
+		$start_date = date('Y-m-d H:i:s', strtotime($date) - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ));
+		$end_date = date('Y-m-d H:i:s', strtotime(date('Y-m-d', strtotime($date)).' 23:59:59') - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) );
 		$filter = " WHERE group_id = $group_id AND event_time >= '$start_date' AND event_time <= '$end_date'";
 		$empty_message = __('There are no events scheduled for this day', 'groupcalendar');
 		$date_format = get_option('time_format');
@@ -869,6 +862,8 @@ function bp_group_calendar_widget_day($date) {
 
 	$cal = new Calendar($date['day'], $date['year'], $date['month']);
 	$cal->week_start = $bgc_locale['week_start'];
+	$first_day = $cal->year . "-" . $cal->month . "-01";
+	$cal->highlighted_dates = bp_group_calendar_highlighted_events($bp->groups->current_group->id, $first_day);
 	$url = bp_get_group_permalink( $bp->groups->current_group ).'calendar';
 	$cal->formatted_link_to = $url.'/%Y/%m/%d/';
   ?>
@@ -929,7 +924,7 @@ function bp_group_calendar_widget_month($date) {
           <?php print($cal->output_calendar()); ?>
         </td>
         <td class="cal-right">
-		<h5 class="events-title"><?php _e('Events For', 'groupcalendar'); ?> <?php echo date_i18n('F Y', strtotime($first_day));?>:</h5>
+					<h5 class="events-title"><?php _e('Events For', 'groupcalendar'); ?> <?php echo date_i18n('F Y', strtotime($first_day));?>:</h5>
     		  <?php bp_group_calendar_list_events($bp->groups->current_group->id, 'month', $first_day, $calendar_capabilities); ?>
         </td>
       </tr>
