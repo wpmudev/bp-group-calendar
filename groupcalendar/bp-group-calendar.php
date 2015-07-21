@@ -723,7 +723,8 @@ function bp_group_calendar_settings() {
 	</label>
 	<label><input value="no" name="group-calendar-send-email"
 	              type="radio"<?php echo ( $email == 'no' ) ? ' checked="checked"' : ''; ?> /> <?php _e( 'No', 'groupcalendar' ) ?>
-	</label>
+	</label><br/>
+	<hr/>
 <?php
 }
 
