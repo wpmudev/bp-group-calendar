@@ -5,6 +5,11 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+1.4.3 - 8/14/2015 Hoang, Aaron
+----------------------------------------------------------------------
+- Fix: Events disappearing too soon in widgets
+- Fix: Missing horizontal line in Group Admin settings
+
 1.4.2 - 10/14/2014
 ----------------------------------------------------------------------
 - Fix: Improve the check for 24hr time localization to work with custom format strings

@@ -1431,7 +1431,8 @@ class BP_Group_Calendar_Widget extends WP_Widget {
 			echo $before_title . apply_filters( 'widget_title', $title ) . $after_title;
 		};
 
-		$events = $wpdb->get_results( "SELECT gc.id, gc.user_id, gc.event_title, gc.event_time, gp.name, gc.group_id FROM " . $wpdb->base_prefix . "bp_groups_calendars gc JOIN " . $wpdb->base_prefix . "bp_groups gp ON gc.group_id=gp.id WHERE gc.event_time >= '" . current_time( 'mysql' ) . "' AND gp.status = 'public' ORDER BY gc.event_time ASC LIMIT " . (int) $instance['num_events'] );
+		$event_date = gmdate( 'Y-m-d H:i:s', ( strtotime( current_time( 'mysql' ) ) - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) ) );
+		$events     = $wpdb->get_results( $wpdb->prepare( "SELECT gc.id, gc.user_id, gc.event_title, gc.event_time, gp.name, gc.group_id FROM " . $wpdb->base_prefix . "bp_groups_calendars gc JOIN " . $wpdb->base_prefix . "bp_groups gp ON gc.group_id=gp.id WHERE gc.event_time >= %s AND gp.status = 'public' ORDER BY gc.event_time ASC LIMIT %d", $event_date, (int) $instance['num_events'] ) );
 
 		if ( $events ) {
 
@@ -1510,7 +1511,8 @@ class BP_Group_Calendar_Widget_Single extends WP_Widget {
 			echo $before_title . apply_filters( 'widget_title', $title ) . $after_title;
 		};
 
-		$events = $wpdb->get_results( "SELECT gc.id, gc.user_id, gc.event_title, gc.event_time, gp.name, gc.group_id FROM " . $wpdb->base_prefix . "bp_groups_calendars gc JOIN " . $wpdb->base_prefix . "bp_groups gp ON gc.group_id=gp.id WHERE gc.event_time >= '" . current_time( 'mysql' ) . "' AND gp.id = " . (int) $instance['group_id'] . " ORDER BY gc.event_time ASC LIMIT " . (int) $instance['num_events'] );
+		$event_date = gmdate( 'Y-m-d H:i:s', ( strtotime( current_time( 'mysql' ) ) - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) ) );
+		$events     = $wpdb->get_results( $wpdb->prepare( "SELECT gc.id, gc.user_id, gc.event_title, gc.event_time, gp.name, gc.group_id FROM " . $wpdb->base_prefix . "bp_groups_calendars gc JOIN " . $wpdb->base_prefix . "bp_groups gp ON gc.group_id=gp.id WHERE gc.event_time >= %s AND gp.id = %d ORDER BY gc.event_time ASC LIMIT %d", $event_date, (int) $instance['group_id'], (int) $instance['num_events'] ) );
 
 		if ( $events ) {
 
@@ -1616,12 +1618,11 @@ class BP_Group_Calendar_Widget_User_Groups extends WP_Widget {
 			echo $before_title . apply_filters( 'widget_title', $title ) . $after_title;
 		};
 
-		$group_ids = implode( ',', $results['groups'] );
-
-		$events = $wpdb->get_results( "SELECT gc.id, gc.user_id, gc.event_title, gc.event_time, gp.name, gc.group_id FROM " . $wpdb->base_prefix . "bp_groups_calendars gc JOIN " . $wpdb->base_prefix . "bp_groups gp ON gc.group_id=gp.id WHERE gc.event_time >= '" . current_time( 'mysql' ) . "' AND gp.id IN ($group_ids) ORDER BY gc.event_time ASC LIMIT " . (int) $instance['num_events'] );
+		$group_ids  = implode( ',', $results['groups'] );
+		$event_date = gmdate( 'Y-m-d H:i:s', ( strtotime( current_time( 'mysql' ) ) - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) ) );
+		$events     = $wpdb->get_results( $wpdb->prepare( "SELECT gc.id, gc.user_id, gc.event_title, gc.event_time, gp.name, gc.group_id FROM " . $wpdb->base_prefix . "bp_groups_calendars gc JOIN " . $wpdb->base_prefix . "bp_groups gp ON gc.group_id=gp.id WHERE gc.event_time >= %s AND gp.id IN ($group_ids) ORDER BY gc.event_time ASC LIMIT %d", $event_date, (int) $instance['num_events'] ) );
 
 		if ( $events ) {
-
 			echo '<ul class="events-list">';
 			//loop through events
 			$events_list = '';
