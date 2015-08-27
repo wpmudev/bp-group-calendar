@@ -725,7 +725,7 @@ function bp_group_calendar_settings() {
 	              type="radio"<?php echo ( $email == 'no' ) ? ' checked="checked"' : ''; ?> /> <?php _e( 'No', 'groupcalendar' ) ?>
 	</label><br/>
 	<hr/>
-<?php
+	<?php
 }
 
 function bp_group_calendar_notification_settings() {
@@ -741,7 +741,7 @@ function bp_group_calendar_notification_settings() {
 		<td class="no"><input type="radio" name="notifications[notification_groups_calendar_event]"
 		                      value="no" <?php checked( $notification_groups_calendar_event, 'no', true ) ?>/></td>
 	</tr>
-<?php
+	<?php
 }
 
 //enqeue js on product settings screen
@@ -786,7 +786,7 @@ function bp_group_calendar_js_output() {
 				});
 			});
 		</script>
-	<?php
+		<?php
 	}
 }
 
@@ -917,6 +917,7 @@ function bp_group_calendar_widget_day( $date ) {
 	$first_day              = $cal->year . "-" . $cal->month . "-01";
 	$cal->highlighted_dates = bp_group_calendar_highlighted_events( $bp->groups->current_group->id, $first_day );
 	$url                    = bp_get_group_permalink( $bp->groups->current_group ) . 'calendar';
+	$url                    = rawurldecode( $url );
 	$cal->formatted_link_to = $url . '/%Y/%m/%d/';
 	?>
 	<div class="bp-widget">
@@ -935,7 +936,7 @@ function bp_group_calendar_widget_day( $date ) {
 			</tr>
 		</table>
 	</div>
-<?php
+	<?php
 }
 
 function bp_group_calendar_widget_month( $date ) {
@@ -953,6 +954,7 @@ function bp_group_calendar_widget_month( $date ) {
 
 	$cal->week_start        = $bgc_locale['week_start'];
 	$url                    = bp_get_group_permalink( $bp->groups->current_group ) . 'calendar';
+	$url                    = rawurldecode( $url );
 	$cal->formatted_link_to = $url . '/%Y/%m/%d/';
 
 	//first day of month for calulation previous and next months
@@ -989,7 +991,7 @@ function bp_group_calendar_widget_month( $date ) {
 		</table>
 
 	</div>
-<?php
+	<?php
 }
 
 function bp_group_calendar_widget_year( $date ) {
@@ -1038,7 +1040,7 @@ function bp_group_calendar_widget_year( $date ) {
 		?>
 		<div class="clear"></div>
 	</div>
-<?php
+	<?php
 }
 
 function bp_group_calendar_widget_upcoming_events() {
@@ -1051,7 +1053,7 @@ function bp_group_calendar_widget_upcoming_events() {
 		<h4><?php _e( 'Upcoming Events', 'groupcalendar' ); ?></h4>
 		<?php bp_group_calendar_list_events( $bp->groups->current_group->id, 'upcoming', '', $calendar_capabilities ); ?>
 	</div>
-<?php
+	<?php
 }
 
 function bp_group_calendar_widget_my_events() {
@@ -1068,7 +1070,7 @@ function bp_group_calendar_widget_my_events() {
 		<h4><?php _e( 'My Events', 'groupcalendar' ); ?></h4>
 		<?php bp_group_calendar_list_events( $bp->groups->current_group->id, 'mine', '', $calendar_capabilities ); ?>
 	</div>
-<?php
+	<?php
 }
 
 
@@ -1136,7 +1138,7 @@ function bp_group_calendar_widget_event_display( $event_id ) {
 		<?php echo $event_meta; ?>
 
 	</div>
-<?php
+	<?php
 }
 
 
@@ -1226,7 +1228,7 @@ function bp_group_calendar_widget_create_event( $date ) {
 		</form>
 
 	</div>
-<?php
+	<?php
 }
 
 
@@ -1458,7 +1460,7 @@ class BP_Group_Calendar_Widget extends WP_Widget {
 		<?php } ?>
 
 		<?php echo $after_widget; ?>
-	<?php
+		<?php
 	}
 
 	function update( $new_instance, $old_instance ) {
@@ -1486,7 +1488,7 @@ class BP_Group_Calendar_Widget extends WP_Widget {
 				<input class="widefat" id="<?php echo $this->get_field_id( 'num_events' ); ?>"
 				       name="<?php echo $this->get_field_name( 'num_events' ); ?>" type="text"
 				       value="<?php echo esc_attr( $num_events ); ?>" style="width: 30%"/></label></p>
-	<?php
+		<?php
 	}
 }
 
@@ -1538,7 +1540,7 @@ class BP_Group_Calendar_Widget_Single extends WP_Widget {
 		<?php } ?>
 
 		<?php echo $after_widget; ?>
-	<?php
+		<?php
 	}
 
 	function update( $new_instance, $old_instance ) {
@@ -1645,7 +1647,7 @@ class BP_Group_Calendar_Widget_User_Groups extends WP_Widget {
 		<?php } ?>
 
 		<?php echo $after_widget; ?>
-	<?php
+		<?php
 	}
 
 	function update( $new_instance, $old_instance ) {
@@ -1673,6 +1675,6 @@ class BP_Group_Calendar_Widget_User_Groups extends WP_Widget {
 				<input class="widefat" id="<?php echo $this->get_field_id( 'num_events' ); ?>"
 				       name="<?php echo $this->get_field_name( 'num_events' ); ?>" type="text"
 				       value="<?php echo esc_attr( $num_events ); ?>" style="width: 30%"/></label></p>
-	<?php
+		<?php
 	}
 }

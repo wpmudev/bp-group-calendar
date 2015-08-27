@@ -5,6 +5,11 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+1.4.4 - 8/27/2015 Hoang, Aaron
+----------------------------------------------------------------------
+- Fix: Support for UTF8 group name slugs
+- Fix: Detection of 24hr time format settings when editing events
+
 1.4.3 - 8/14/2015 Hoang, Aaron
 ----------------------------------------------------------------------
 - Fix: Events disappearing too soon in widgets
