@@ -33,7 +33,7 @@ table.calendar-view {
 }
 
 table.calendar-view td.cal-left {
-    width: 10%;
+    width: 300px;
     vertical-align: middle;
 }
 
