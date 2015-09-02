@@ -1179,10 +1179,14 @@ function bp_group_calendar_widget_create_event( $date ) {
 				<select name="event-hour" id="event-hour">
 					<?php
 					if ( $bgc_locale['time_format'] == 24 ) {
-						$bgc_locale['time_format'] = 23;
+						$max_hour = 23;
+						$default_hour = date( 'G' );//default to current hour for new events
+					} else {
+						$max_hour = 12;
+						$default_hour = date( 'g' );//default to current hour for new events
 					}
-					for ( $i = 1; $i <= $bgc_locale['time_format']; $i ++ ) {
-						$hour_check = ( $i == 7 ) ? ' selected="selected"' : '';
+					for ( $i = 1; $i <= $max_hour; $i ++ ) {
+						$hour_check = ( $i == $default_hour ) ? ' selected="selected"' : '';
 						echo '<option value="' . $i . '"' . $hour_check . '>' . $i . "</option>\n";
 					}
 					?>
@@ -1272,11 +1276,21 @@ function bp_group_calendar_widget_edit_event( $event_id = false ) {
 		if ( $tmp_date ) {
 			$event_date = date( 'Y-m-d', $tmp_date );
 
-			$event_hour   = date( 'g', $tmp_date );
+			if ( $bgc_locale['time_format'] == 12 ) {
+				$event_hour = date( 'g', $tmp_date );
+			} else {
+				$event_hour = date( 'G', $tmp_date );
+			}
+
 			$event_minute = date( 'i', $tmp_date );
 			$event_ampm   = date( 'a', $tmp_date );
 		} else {
-			$event_hour = 7;
+			//default to current hour for new events
+			if ( $bgc_locale['time_format'] == 12 ) {
+				$event_hour = date( 'g' );
+			} else {
+				$event_hour = date( 'G' );
+			}
 		}
 
 		$event_description = stripslashes( $event->event_description );

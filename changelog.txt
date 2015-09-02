@@ -5,6 +5,11 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+1.4.5 - 9/2/2015 Aaron
+----------------------------------------------------------------------
+- Fix: CSS conflict with Twentyfifteen theme theme update in WP4.3
+- Fix: Saving of 24hr time converting to 12hr when editing events
+
 1.4.4 - 8/27/2015 Hoang, Aaron
 ----------------------------------------------------------------------
 - Fix: Support for UTF8 group name slugs

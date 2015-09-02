@@ -24,7 +24,7 @@ form#add-event-form select {
 }
 
 table.calendar-view {
-    width: 90%;
+    width: 100%;
     margin: 0 5%;
 }
 
