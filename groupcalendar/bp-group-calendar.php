@@ -106,7 +106,7 @@ if ( class_exists( 'BP_Group_Extension' ) ) {
 		var $enable_nav_item = false; // If your extension does not need a navigation item, set this to false
 		var $enable_edit_item = false; // If your extension does not need an edit screen, set this to false
 
-		function bp_group_calendar_extension() {
+		function __construct() {
 			global $bp;
 
 			$this->name            = __( 'Calendar', 'groupcalendar' );
@@ -1439,7 +1439,7 @@ function bp_group_calendar_widget_edit_event( $event_id = false ) {
 
 class BP_Group_Calendar_Widget extends WP_Widget {
 
-	function BP_Group_Calendar_Widget() {
+	function __construct() {
 		$widget_ops = array(
 			'classname'   => 'bp_group_calendar',
 			'description' => __( 'Displays upcoming public group events.', 'groupcalendar' )
@@ -1519,7 +1519,7 @@ class BP_Group_Calendar_Widget extends WP_Widget {
 
 class BP_Group_Calendar_Widget_Single extends WP_Widget {
 
-	function BP_Group_Calendar_Widget_Single() {
+	function __construct() {
 		$widget_ops = array(
 			'classname'   => 'bp_group_calendar_single',
 			'description' => __( 'Displays upcoming group events for a single group.', 'groupcalendar' )
@@ -1613,7 +1613,7 @@ class BP_Group_Calendar_Widget_Single extends WP_Widget {
 
 class BP_Group_Calendar_Widget_User_Groups extends WP_Widget {
 
-	function BP_Group_Calendar_Widget_User_Groups() {
+	function __construct() {
 		$widget_ops = array(
 			'classname'   => 'bp_group_calendar_user_groups',
 			'description' => __( 'Displays upcoming group events for a logged in user\'s groups.', 'groupcalendar' )

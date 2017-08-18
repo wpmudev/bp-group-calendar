@@ -38,7 +38,7 @@ class Calendar {
 
 
 	/* CONSTRUCTOR */
-	function Calendar( $date = null, $year = null, $month = null ) {
+	function __construct( $date = null, $year = null, $month = null ) {
 		$self          = htmlspecialchars( $_SERVER['PHP_SELF'] );
 		$this->link_to = $self;
 
