@@ -22,6 +22,7 @@ require_once( WP_PLUGIN_DIR . '/bp-group-calendar/groupcalendar/calendar.class.p
 
 add_action( 'admin_init', 'bp_group_calendar_make_current' );
 
+
 add_action( 'groups_group_after_save', 'bp_group_calendar_settings_save' );
 add_action( 'bp_after_group_settings_creation_step', 'bp_group_calendar_settings' );
 add_action( 'bp_after_group_settings_admin', 'bp_group_calendar_settings' );
@@ -35,16 +36,28 @@ add_action( 'groups_new_calendar_event', 'groups_update_last_activity' );
 add_action( 'groups_edit_calendar_event', 'groups_update_last_activity' );
 
 
-//widgets
-add_action( 'widgets_init', create_function( '', 'return register_widget("BP_Group_Calendar_Widget");' ) );
-add_action( 'widgets_init', create_function( '', 'return register_widget("BP_Group_Calendar_Widget_Single");' ) );
-add_action( 'widgets_init', create_function( '', 'return register_widget("BP_Group_Calendar_Widget_User_Groups");' ) );
+/**
+ * Register the BP Group Calendar widgets.
+ * @version 1.0, 17/10/2022
+ * @author lenasterg
+ */
+function bp_group_calendar_register_widgets() {
+	if ( !bp_is_active( 'groups' ) ) {
+		return;
+	}
+	register_widget( 'BP_Group_Calendar_Widget' );
+	register_widget( 'BP_Group_Calendar_Widget_Single' );
+	register_widget( 'BP_Group_Calendar_Widget_User_Groups' );
+}
 
+add_action( 'widgets_init', 'bp_group_calendar_register_widgets' );
 //------------------------------------------------------------------------//
 
+																			
 //---Functions------------------------------------------------------------//
 
 //------------------------------------------------------------------------//
+
 
 
 function bp_group_calendar_make_current() {
@@ -89,6 +102,7 @@ function bp_group_calendar_global_install() {
                                   `created_stamp` bigint(30) NOT NULL,
                                   `last_edited_id` bigint(20) NOT NULL default '0',
                                   `last_edited_stamp` bigint(30) NOT NULL,
+
                                   PRIMARY KEY  (`id`)
                                 ) ENGINE=MyISAM CHARACTER SET utf8 COLLATE utf8_general_ci;";
 
@@ -115,7 +129,7 @@ if ( class_exists( 'BP_Group_Extension' ) ) {
 		var $enable_edit_item = false; // If your extension does not need an edit screen, set this to false
 
 		function __construct() {
-			global $bp;
+			$bp=buddypress();
 
 			$this->name            = __( 'Calendar', 'groupcalendar' );
 			$this->slug            = 'calendar';
@@ -126,13 +140,16 @@ if ( class_exists( 'BP_Group_Extension' ) ) {
 
 		}
 
+
 		function display( $group_id = NULL ) {
-			global $bp;
+			$bp=buddypress();
+		
 			$event_id = bp_group_calendar_event_url_parse();
 
 			$edit_event = bp_group_calendar_event_is_edit();
 
 			bp_group_calendar_event_is_delete();
+
 
 			if ( bp_group_calendar_event_save() === false ) {
 				$edit_event = true;
@@ -160,10 +177,12 @@ if ( class_exists( 'BP_Group_Extension' ) ) {
 				//display_event
 				bp_group_calendar_widget_event_display( $event_id );
 
+		   
 				//current month view
 				bp_group_calendar_widget_month( $date );
 
 			} else if ( isset( $date['year'] ) && ! isset( $date['month'] ) && ! isset( $date['day'] ) ) {
+
 
 				//year view
 				bp_group_calendar_widget_year( $date );
@@ -179,6 +198,7 @@ if ( class_exists( 'BP_Group_Extension' ) ) {
 
 			} else if ( isset( $date['year'] ) && isset( $date['month'] ) && isset( $date['day'] ) ) {
 
+
 				//day view
 				bp_group_calendar_widget_day( $date );
 
@@ -190,6 +210,7 @@ if ( class_exists( 'BP_Group_Extension' ) ) {
 				bp_group_calendar_widget_month( $date );
 
 				bp_group_calendar_widget_upcoming_events();
+
 
 				bp_group_calendar_widget_my_events();
 
@@ -231,6 +252,7 @@ function bgc_date_display( $time, $format = false, $all_day = false ) {
 	return date_i18n( $format, $localtime );
 }
 
+															 
 
 function bp_group_calendar_settings_save( $group ) {
 	global $wpdb;
@@ -371,14 +393,14 @@ function bp_group_calendar_event_save() {
 
 //register activities
 function bp_group_calendar_reg_activity() {
-	global $bp;
+	$bp=buddypress();
 	bp_activity_set_action( $bp->groups->id, 'new_calendar_event', __( 'New group event', 'groupcalendar' ) );
 	bp_activity_set_action( $bp->groups->id, 'edit_calendar_event', __( 'Modified group event', 'groupcalendar' ) );
 }
 
 //adds actions to the group recent actions
 function bp_group_calendar_event_add_action_message( $new, $event_id, $event_date, $event_title, $event_all_day = false ) {
-	global $bp;
+	$bp=buddypress();
 
 	$url = bp_group_calendar_create_event_url( $event_id );
 
@@ -413,8 +435,8 @@ function bp_group_calendar_event_add_action_message( $new, $event_id, $event_dat
 
 //send the email
 function bp_group_calendar_event_email( $new, $event_id, $event_date, $event_title, $event_all_day ) {
-	global $wpdb, $current_user, $bp, $bgc_email_default;
-
+	global $wpdb, $current_user,  $bgc_email_default;
+	$bp=buddypress();
 	//check if email is disabled for group
 	$email = groups_get_groupmeta( $bp->groups->current_group->id, 'group_calendar_send_email' );
 	if ( empty( $email ) ) {
@@ -483,7 +505,7 @@ View this Group: %s
 }
 
 function bp_group_calendar_get_capabilities() {
-	global $bp;
+	$bp=buddypress();
 
 	if ( bp_group_is_admin() ) {
 		return 'full';
@@ -598,7 +620,8 @@ function bp_group_calendar_event_is_edit() {
 }
 
 function bp_group_calendar_event_is_delete() {
-	global $wpdb, $current_user, $bp;
+	global $wpdb, $current_user;
+	$bp=buddypress();
 
 	$calendar_capabilities = bp_group_calendar_get_capabilities();
 	$event_id              = bp_group_calendar_event_url_parse();
@@ -655,7 +678,7 @@ function bp_group_calendar_event_is_delete() {
 
 
 function bp_group_calendar_create_event_url( $event_id, $edit = false ) {
-	global $bp;
+    $bp=buddypress();
 
 	$url = bp_get_group_permalink( $bp->groups->current_group );
 	$url .= 'calendar/event/' . $event_id . '/';
@@ -694,10 +717,12 @@ function bp_group_calendar_settings() {
 		$group_calendar_member_capabilities = groups_get_groupmeta( $group->id, 'group_calendar_member_capabilities' );
 	}
 
+														 
 	if ( empty( $group_calendar_member_capabilities ) ) {
 		$group_calendar_member_capabilities = BGC_MEMBER_DEFAULT;
 	}
 
+							  
 	if ( ! empty( $group ) ) {
 		$email = groups_get_groupmeta( $group->id, 'group_calendar_send_email' );
 	}
@@ -708,38 +733,43 @@ function bp_group_calendar_settings() {
 	?>
 	<h4><?php _e( 'Group Calendar Settings', 'groupcalendar' ) ?></h4>
 	<label for="group-calendar-moderator-capabilities"><?php _e( 'Moderator Capabilities', 'groupcalendar' ) ?></label>
-
+				
 	<select name="group-calendar-moderator-capabilities" id="group-calendar-moderator-capabilities">
 
 		<option value="full" <?php if ( $group_calendar_moderator_capabilities == 'full' ) {
 			echo 'selected="selected"';
 		} ?>><?php _e( 'Create events / Edit all events', 'groupcalendar' ); ?></option>
 
-		<option value="limited" <?php if ( $group_calendar_moderator_capabilities == 'limited' ) {
+
+		<option value="limited" <?php if ( $group_calendar_moderator_capabilities == 'limited' ) {						 
 			echo 'selected="selected"';
 		} ?>><?php _e( 'Create events / Edit own events', 'groupcalendar' ); ?></option>
 
-		<option value="none" <?php if ( $group_calendar_moderator_capabilities == 'none' ) {
+		<option value="none" <?php if ( $group_calendar_moderator_capabilities == 'none' ) {							 
 			echo 'selected="selected"';
 		} ?>><?php _e( 'No capabilities', 'groupcalendar' ); ?></option>
 
 	</select>
-
+																														 
 	<label for="group-calendar-member-capabilities"><?php _e( 'Member Capabilities', 'groupcalendar' ) ?></label>
-
+																				  
 	<select name="group-calendar-member-capabilities" id="group-calendar-member-capabilities">
-
 		<option value="full" <?php if ( $group_calendar_member_capabilities == 'full' ) {
+						 
 			echo 'selected="selected"';
 		} ?>><?php _e( 'Create events / Edit all events', 'groupcalendar' ); ?></option>
 
 		<option value="limited" <?php if ( $group_calendar_member_capabilities == 'limited' ) {
+	 
 			echo 'selected="selected"';
 		} ?>><?php _e( 'Create events / Edit own events', 'groupcalendar' ); ?></option>
 
+
 		<option value="none" <?php if ( $group_calendar_member_capabilities == 'none' ) {
+							 
 			echo 'selected="selected"';
 		} ?>><?php _e( 'No capabilities', 'groupcalendar' ); ?></option>
+
 
 	</select>
 
@@ -756,6 +786,9 @@ function bp_group_calendar_settings() {
 	<?php
 }
 
+																								   
+   
+													
 function bp_group_calendar_notification_settings() {
 	if ( ! $notification_groups_calendar_event = bp_get_user_meta( bp_displayed_user_id(), 'notification_groups_calendar_event', true ) ) {
 		$notification_groups_calendar_event = 'yes';
@@ -773,15 +806,23 @@ function bp_group_calendar_notification_settings() {
 }
 
 //enqeue js on product settings screen
+  
+								 
+   
+								 
 function bp_group_calendar_js() {
 
 	if ( ! is_admin() && strpos( $_SERVER['REQUEST_URI'], '/calendar/' ) !== false ) {
 		global $bgc_locale;
 
 		wp_enqueue_style( 'groupcalendar-css', plugins_url( '/bp-group-calendar/groupcalendar/group_calendar.css' ), false );
+															
+																																									 
 		wp_enqueue_style( 'jquery-datepicker-css', plugins_url( '/bp-group-calendar/groupcalendar/datepicker/css/smoothness/jquery-ui-1.10.3.custom.min.css' ), '1.10.3' );
+												 
 		wp_enqueue_script( 'jquery-ui-datepicker' );
 
+																				   
 		//only load languages for datepicker if not english (or it will show Chinese!)
 		if ( $bgc_locale['code'] != 'en' ) {
 			wp_enqueue_script( 'jquery-datepicker-i18n', plugins_url( '/bp-group-calendar/groupcalendar/datepicker/js/jquery-ui-i18n.min.js' ), array( 'jquery-ui-datepicker' ) );
@@ -805,6 +846,7 @@ function bp_group_calendar_js_output() {
 				});
 				jQuery('a#event-delete-link').click(function () {
 					var answer = confirm("<?php _e('Are you sure you want to delete this event?', 'groupcalendar'); ?>")
+				 
 					if (answer) {
 						return true;
 					} else {
@@ -857,6 +899,7 @@ function bp_group_calendar_highlighted_events( $group_id, $date = '' ) {
 
 }
 
+																												
 function bp_group_calendar_list_events( $group_id, $range, $date = '', $calendar_capabilities, $show_all = 0 ) {
 	global $wpdb, $current_user;
 
@@ -915,6 +958,7 @@ function bp_group_calendar_list_events( $group_id, $range, $date = '', $calendar
 
 			$events_list .= "\n<li" . $class . ">";
 
+																																																																					  
 			$events_list .= '<a href="' . bp_group_calendar_create_event_url( $event->id ) . '" title="' . __( 'View Event', 'groupcalendar' ) . '" class="event_title">' . bgc_date_display( $event->event_time, $date_format, $event->event_all_day ) . ': ' . stripslashes( $event->event_title ) . '</a>';
 
 			//add edit link if allowed
@@ -942,7 +986,8 @@ function bp_group_calendar_list_events( $group_id, $range, $date = '', $calendar
 //widgets
 
 function bp_group_calendar_widget_day( $date ) {
-	global $bp, $bgc_locale;
+	global $bgc_locale;
+	$bp=buddypress();							  
 
 	$calendar_capabilities = bp_group_calendar_get_capabilities();
 
@@ -976,7 +1021,8 @@ function bp_group_calendar_widget_day( $date ) {
 }
 
 function bp_group_calendar_widget_month( $date ) {
-	global $bp, $bgc_locale;
+	global  $bgc_locale;
+	$bp=buddypress();
 
 	$calendar_capabilities = bp_group_calendar_get_capabilities();
 
@@ -1001,9 +1047,11 @@ function bp_group_calendar_widget_month( $date ) {
 	$this_year              = $url . date( "/Y/", strtotime( $first_day ) );
 	?>
 	<div class="bp-widget">
+																				   
 		<h4>
 			<?php _e( 'Month View', 'groupcalendar' ); ?>:
 			<?php echo date_i18n( __( 'F Y', 'groupcalendar' ), strtotime( $first_day ) ); ?>
+																																			
 			<span>
         <a title="<?php _e( 'Previous Month', 'groupcalendar' ); ?>"
            href="<?php echo $previous_month; ?>">&larr; <?php _e( 'Previous', 'groupcalendar' ); ?></a> |
@@ -1022,6 +1070,8 @@ function bp_group_calendar_widget_month( $date ) {
 					<h5 class="events-title"><?php _e( 'Events For', 'groupcalendar' ); ?> <?php echo date_i18n( 'F Y', strtotime( $first_day ) ); ?>
 						:</h5>
 					<?php bp_group_calendar_list_events( $bp->groups->current_group->id, 'month', $first_day, $calendar_capabilities ); ?>
+					 
+					
 				</td>
 			</tr>
 		</table>
@@ -1031,7 +1081,8 @@ function bp_group_calendar_widget_month( $date ) {
 }
 
 function bp_group_calendar_widget_year( $date ) {
-	global $bp, $bgc_locale;
+	global $bgc_locale;
+	$bp=buddypress();
 
 	$calendar_capabilities = bp_group_calendar_get_capabilities();
 
@@ -1059,6 +1110,7 @@ function bp_group_calendar_widget_year( $date ) {
 		//loop through years
 		for ( $i = 1; $i <= 12; $i ++ ) {
 			$cal                    = new Calendar( '', $year, $month );
+																											   
 			$cal->week_start        = $bgc_locale['week_start'];
 			$cal->formatted_link_to = $url . '/%Y/%m/%d/';
 			$first_day              = $cal->year . "-" . $cal->month . "-01";
@@ -1080,7 +1132,7 @@ function bp_group_calendar_widget_year( $date ) {
 }
 
 function bp_group_calendar_widget_upcoming_events() {
-	global $bp;
+	$bp=buddypress();
 
 	$calendar_capabilities = bp_group_calendar_get_capabilities();
 
@@ -1093,8 +1145,7 @@ function bp_group_calendar_widget_upcoming_events() {
 }
 
 function bp_group_calendar_widget_my_events() {
-	global $bp;
-
+	$bp=buddypress();
 	if ( ! is_user_logged_in() ) {
 		return;
 	}
@@ -1108,10 +1159,10 @@ function bp_group_calendar_widget_my_events() {
 	</div>
 	<?php
 }
-
-
+												
 function bp_group_calendar_widget_event_display( $event_id ) {
-	global $wpdb, $current_user, $bp, $bgc_locale;
+	global $wpdb, $current_user,  $bgc_locale;
+	$bp=buddypress();
 
 	$group_id = $bp->groups->current_group->id;
 
@@ -1129,7 +1180,7 @@ function bp_group_calendar_widget_event_display( $event_id ) {
 		$edit_link = '<span><a href="' . bp_group_calendar_create_event_url( $event_id, true ) . '" title="' . __( 'Edit Event', 'groupcalendar' ) . '">' . __( 'Edit', 'groupcalendar' ) . ' &rarr;</a></span>';
 	}
 
-	$map_url = 'http://maps.google.com/maps?hl=' . $bgc_locale['code'] . '&q=' . urlencode( stripslashes( $event->event_location ) );
+	$map_url = 'https://maps.google.com/maps?hl=' . $bgc_locale['code'] . '&q=' . urlencode( stripslashes( $event->event_location ) );
 
 	$event_created_by    = bp_core_get_userlink( $event->user_id );
 	$event_created       = bgc_date_display( $event->created_stamp, get_option( 'date_format' ) . __( ' \a\t ', 'groupcalendar' ) . get_option( 'time_format' ), $event->event_all_day );
@@ -1161,8 +1212,8 @@ function bp_group_calendar_widget_event_display( $event_id ) {
 			<h6 class="event-label"><?php _e( 'Location:', 'groupcalendar' ); ?></h6>
 			<div class="event-location">
 
-				<?php echo stripslashes( $event->event_location ); ?>
-
+				<?php echo stripslashes( $event->event_location ); ?> 
+			  
 				<?php if ( $event->event_map ) : ?>
 					<span class="event-map">
     	    <a href="<?php echo $map_url; ?>" target="_blank"
@@ -1177,10 +1228,11 @@ function bp_group_calendar_widget_event_display( $event_id ) {
 	</div>
 	<?php
 }
-
+												  
 
 function bp_group_calendar_widget_create_event( $date ) {
-	global $bp, $bgc_locale;
+	global  $bgc_locale;
+	$bp=buddypress();
 
 	$calendar_capabilities = bp_group_calendar_get_capabilities();
 
@@ -1210,6 +1262,7 @@ function bp_group_calendar_widget_create_event( $date ) {
 			<input name="event-title" id="event-title" value="" type="text">
 
 			<label for="event-date"><?php _e( 'Date', 'groupcalendar' ); ?> *
+											 
 				<input name="event-date" id="event-date" value="<?php echo $default_date; ?>" type="text"></label>
 
 			<label for="event-time"><?php _e( 'Time', 'groupcalendar' ); ?> *
@@ -1248,6 +1301,7 @@ function bp_group_calendar_widget_create_event( $date ) {
 			</label>
 
 			<label for="event-desc"><?php _e( 'Description', 'groupcalendar' ); ?></label>
+	  
 			<?php
 			if ( function_exists( 'wp_editor' ) ) {
 				wp_editor( '', 'event-desc', array( 'media_buttons' => false, 'dfw' => false ) );
@@ -1259,11 +1313,15 @@ function bp_group_calendar_widget_create_event( $date ) {
 			<label for="event-loc"><?php _e( 'Location', 'groupcalendar' ); ?></label>
 			<input name="event-loc" id="event-loc" value="" type="text">
 
+																					  
+			 
 			<label for="event-map"><?php _e( 'Show Map Link?', 'groupcalendar' ); ?>
 				<input name="event-map" id="event-map" value="1" type="checkbox" checked="checked"/>
+																	  
+																											  
 				<small><?php _e( '(Note: Location must be an address)', 'groupcalendar' ); ?></small>
 			</label>
-
+																												   
 			<input name="create-event" id="create-event" value="1" type="hidden">
 			<input name="group-id" id="group-id" value="<?php echo $bp->groups->current_group->id; ?>" type="hidden">
 			<?php wp_nonce_field( 'bp_group_calendar' ); ?>
@@ -1279,7 +1337,8 @@ function bp_group_calendar_widget_create_event( $date ) {
 
 
 function bp_group_calendar_widget_edit_event( $event_id = false ) {
-	global $wpdb, $current_user, $bp, $bgc_locale;
+	global $wpdb, $current_user,  $bgc_locale;
+	$bp=buddypress();
 
 	$url = bp_get_group_permalink( $bp->groups->current_group ) . 'calendar/';
 
@@ -1300,17 +1359,17 @@ function bp_group_calendar_widget_edit_event( $event_id = false ) {
 
 		$event = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM " . $wpdb->base_prefix . "bp_groups_calendars WHERE group_id = %d AND id = %d", $group_id, $event_id ) );
 
+
 		if ( ! $event ) {
 			return false;
 		}
-
 		//check limited capability users
 		if ( $calendar_capabilities == 'limited' && $current_user->ID != $event->user_id ) {
 			bp_core_add_message( __( "You don't have permission to edit that event", 'groupcalendar' ), 'error' );
 
 			return false;
 		}
-
+											 
 		$event_title = stripslashes( $event->event_title );
 
 		//check for valid date/time
@@ -1323,7 +1382,6 @@ function bp_group_calendar_widget_edit_event( $event_id = false ) {
 			} else {
 				$event_hour = date( 'G', $tmp_date );
 			}
-
 			$event_minute = date( 'i', $tmp_date );
 			$event_ampm   = date( 'a', $tmp_date );
 		} else {
@@ -1346,7 +1404,7 @@ function bp_group_calendar_widget_edit_event( $event_id = false ) {
 		$event_last_modified = bgc_date_display( $event->last_edited_stamp, get_option( 'date_format' ) . __( ' \a\t ', 'groupcalendar' ) . get_option( 'time_format' ) );
 
 		$event_meta = '<span class="event-meta">' . sprintf( __( 'Created by %1$s on %2$s. Last modified by %3$s on %4$s.', 'groupcalendar' ), $event_created_by, $event_created, $event_modified_by, $event_last_modified ) . '</span>';
-
+										 
 		$delete_url  = $url . 'delete/';
 		$delete_url  = wp_nonce_url( $delete_url, 'event-delete-link' );
 		$delete_link = '<span><a id="event-delete-link" href="' . $delete_url . '" title="' . __( 'Delete Event', 'groupcalendar' ) . '">' . __( 'Delete', 'groupcalendar' ) . ' &rarr;</a></span>';
@@ -1356,8 +1414,7 @@ function bp_group_calendar_widget_edit_event( $event_id = false ) {
 		if ( ! isset( $_POST['create-event'] ) ) {
 			return false;
 		}
-
-		$event_title = esc_attr( strip_tags( trim( stripslashes( $_POST['event-title'] ) ) ) );
+		$event_title = esc_attr( strip_tags( trim( stripslashes( $_POST['event-title'] ) ) ) );						
 		$tmp_date    = $_POST['event-date'] . ' ' . $_POST['event-hour'] . ':' . $_POST['event-minute'] . $_POST['event-ampm'];
 		$tmp_date    = strtotime( $tmp_date );
 
@@ -1370,7 +1427,7 @@ function bp_group_calendar_widget_edit_event( $event_id = false ) {
 			} else {
 				$event_hour = date( 'G', $tmp_date );
 			}
-
+																		  
 			$event_minute = date( 'i', $tmp_date );
 			$event_ampm   = date( 'a', $tmp_date );
 		} else {
@@ -1438,6 +1495,8 @@ function bp_group_calendar_widget_edit_event( $event_id = false ) {
 
 			<label for="event-desc"><?php _e( 'Description', 'groupcalendar' ); ?></label>
 			<?php if ( function_exists( 'wp_editor' ) ) {
+
+																		   
 				wp_editor( $event_description, 'event-desc', array( 'media_buttons' => false, 'dfw' => false ) );
 			} else {
 				the_editor( $event_description, 'event-desc', 'event-desc', false );
@@ -1458,15 +1517,15 @@ function bp_group_calendar_widget_edit_event( $event_id = false ) {
 
 			<input name="create-event" id="create-event" value="1" type="hidden">
 			<input name="group-id" id="group-id" value="<?php echo $bp->groups->current_group->id; ?>" type="hidden">
+	
 			<?php wp_nonce_field( 'bp_group_calendar' ); ?>
 
 			<?php echo $event_meta; ?>
+				  
 
 			<p><input value="<?php _e( 'Save Event', 'groupcalendar' ); ?> &raquo;" id="save" name="save" type="submit">
 			</p>
-
 		</form>
-
 	</div>
 	<?php
 
@@ -1486,8 +1545,8 @@ class BP_Group_Calendar_Widget extends WP_Widget {
 	}
 
 	function widget( $args, $instance ) {
-		global $wpdb, $current_user, $bp;
-
+		global $wpdb, $current_user;
+		$bp=buddypress();
 		extract( $args );
 
 		echo $before_widget;
@@ -1500,7 +1559,6 @@ class BP_Group_Calendar_Widget extends WP_Widget {
 		$events     = $wpdb->get_results( $wpdb->prepare( "SELECT gc.id, gc.user_id, gc.event_title, gc.event_time, gp.name, gc.group_id, gc.event_all_day FROM " . $wpdb->base_prefix . "bp_groups_calendars gc JOIN " . $wpdb->base_prefix . "bp_groups gp ON gc.group_id=gp.id WHERE gc.event_time >= %s AND gp.status = 'public' ORDER BY gc.event_time ASC LIMIT %d", $event_date, (int) $instance['num_events'] ) );
 
 		if ( $events ) {
-
 			echo '<ul class="events-list">';
 			//loop through events
 			$events_list = '';
@@ -1510,6 +1568,7 @@ class BP_Group_Calendar_Widget extends WP_Widget {
 				$group = groups_get_group( array( 'group_id' => $event->group_id ) );
 				$url   = bp_get_group_permalink( $group ) . 'calendar/event/' . $event->id . '/';
 				$events_list .= stripslashes( $event->name ) . '<br /><a href="' . $url . '" title="' . __( 'View Event', 'groupcalendar' ) . '">' . bgc_date_display( $event->event_time, false, $event->event_all_day ) . ': ' . stripslashes( $event->event_title ) . '</a>';
+									
 				$events_list .= "</li>";
 			}
 			echo $events_list;
@@ -1527,6 +1586,7 @@ class BP_Group_Calendar_Widget extends WP_Widget {
 	}
 
 	function update( $new_instance, $old_instance ) {
+								 
 		$instance               = $old_instance;
 		$instance['title']      = strip_tags( $new_instance['title'] );
 		$instance['num_events'] = strip_tags( $new_instance['num_events'] );
@@ -1552,7 +1612,7 @@ class BP_Group_Calendar_Widget extends WP_Widget {
 				       name="<?php echo $this->get_field_name( 'num_events' ); ?>" type="text"
 				       value="<?php echo esc_attr( $num_events ); ?>" style="width: 30%"/></label></p>
 		<?php
-	}
+	}																																								 
 }
 
 class BP_Group_Calendar_Widget_Single extends WP_Widget {
@@ -1566,7 +1626,8 @@ class BP_Group_Calendar_Widget_Single extends WP_Widget {
 	}
 
 	function widget( $args, $instance ) {
-		global $wpdb, $current_user, $bp;
+		global $wpdb, $current_user;
+		$bp=buddypress();
 
 		extract( $args );
 
@@ -1578,7 +1639,7 @@ class BP_Group_Calendar_Widget_Single extends WP_Widget {
 
 		$event_date = gmdate( 'Y-m-d H:i:s', ( strtotime( current_time( 'mysql' ) ) - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) ) );
 		$events     = $wpdb->get_results( $wpdb->prepare( "SELECT gc.id, gc.user_id, gc.event_title, gc.event_time, gp.name, gc.group_id, gc.event_all_day FROM " . $wpdb->base_prefix . "bp_groups_calendars gc JOIN " . $wpdb->base_prefix . "bp_groups gp ON gc.group_id=gp.id WHERE gc.event_time >= %s AND gp.id = %d ORDER BY gc.event_time ASC LIMIT %d", $event_date, (int) $instance['group_id'], (int) $instance['num_events'] ) );
-
+													
 		if ( $events ) {
 
 			echo '<ul class="events-list">';
@@ -1604,14 +1665,17 @@ class BP_Group_Calendar_Widget_Single extends WP_Widget {
 
 		<?php echo $after_widget; ?>
 		<?php
+
 	}
 
 	function update( $new_instance, $old_instance ) {
 		$instance               = $old_instance;
+								 
 		$instance['title']      = strip_tags( $new_instance['title'] );
 		$instance['num_events'] = strip_tags( $new_instance['num_events'] );
 		$instance['group_id']   = (int) $new_instance['group_id'];
 
+   
 		return $instance;
 	}
 
@@ -1647,6 +1711,7 @@ class BP_Group_Calendar_Widget_Single extends WP_Widget {
 			echo '</select></label></p>';
 		}
 	}
+ 
 }
 
 class BP_Group_Calendar_Widget_User_Groups extends WP_Widget {
@@ -1676,18 +1741,21 @@ class BP_Group_Calendar_Widget_User_Groups extends WP_Widget {
 		}
 
 		extract( $args );
-
+												  
 		echo $before_widget;
 		$title = $instance['title'];
 		if ( ! empty( $title ) ) {
 			echo $before_title . apply_filters( 'widget_title', $title ) . $after_title;
 		};
 
+						   
+						
 		$group_ids  = implode( ',', $results['groups'] );
 		$event_date = gmdate( 'Y-m-d H:i:s', ( strtotime( current_time( 'mysql' ) ) - ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) ) );
 		$events     = $wpdb->get_results( $wpdb->prepare( "SELECT gc.id, gc.user_id, gc.event_title, gc.event_time, gp.name, gc.group_id, gc.event_all_day FROM " . $wpdb->base_prefix . "bp_groups_calendars gc JOIN " . $wpdb->base_prefix . "bp_groups gp ON gc.group_id=gp.id WHERE gc.event_time >= %s AND gp.id IN ($group_ids) ORDER BY gc.event_time ASC LIMIT %d", $event_date, (int) $instance['num_events'] ) );
 
 		if ( $events ) {
+																																																														 
 			echo '<ul class="events-list">';
 			//loop through events
 			$events_list = '';
@@ -1712,9 +1780,12 @@ class BP_Group_Calendar_Widget_User_Groups extends WP_Widget {
 		<?php echo $after_widget; ?>
 		<?php
 	}
+				   
+	  
 
 	function update( $new_instance, $old_instance ) {
 		$instance               = $old_instance;
+																																		   
 		$instance['title']      = strip_tags( $new_instance['title'] );
 		$instance['num_events'] = strip_tags( $new_instance['num_events'] );
 
@@ -1738,6 +1809,6 @@ class BP_Group_Calendar_Widget_User_Groups extends WP_Widget {
 				<input class="widefat" id="<?php echo $this->get_field_id( 'num_events' ); ?>"
 				       name="<?php echo $this->get_field_name( 'num_events' ); ?>" type="text"
 				       value="<?php echo esc_attr( $num_events ); ?>" style="width: 30%"/></label></p>
-		<?php
+		<?php  
 	}
 }
