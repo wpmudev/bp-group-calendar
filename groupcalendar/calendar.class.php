@@ -5,7 +5,7 @@
  *
  * This class provides a simple reuasable means to produce month calendars in valid html
  *
- * @version 2.7
+ * @version 2.8
  * @author Jim Mayes <jim.mayes@gmail.com>
  * @link *link removed as site is malware compromised*
  * @copyright Copyright (c) 2008, Jim Mayes
@@ -75,6 +75,16 @@ class Calendar {
 		return $day_of_week;
 	}
 
+	/**
+	 * 
+	 * @global type $wp_locale
+	 * @param type $year
+	 * @param type $month
+	 * @param type $calendar_class
+	 * @return string
+	 * 
+	 * @version 2.0
+	 */
 	function output_calendar( $year = null, $month = null, $calendar_class = 'calendar' ) {
 		global $wp_locale;
 		if ( $this->week_start_on !== false ) {
@@ -200,7 +210,7 @@ class Calendar {
 					if ( empty( $this->formatted_link_to ) ) {
 						$output .= "<a href=\"" . $this->link_to . "?date=" . $day_date . "\">" . $day . "</a>";
 					} else {
-						$output .= "<a href=\"" . strftime( $this->formatted_link_to, strtotime( $day_date ) ) . "\">" . $day . "</a>";
+						$output .= "<a href=\"" . gmdate( $this->formatted_link_to, strtotime( $day_date ) ) . "\">" . $day . "</a>";
 					}
 					break;
 
@@ -210,7 +220,7 @@ class Calendar {
 							if ( empty( $this->formatted_link_to ) ) {
 								$output .= "<a href=\"" . $this->link_to . "?date=" . $day_date . "\">";
 							} else {
-								$output .= "<a href=\"" . strftime( $this->formatted_link_to, strtotime( $day_date ) ) . "\">";
+								$output .= "<a href=\"" . gmdate( $this->formatted_link_to, strtotime( $day_date ) ) . "\">";
 							}
 						}
 					}
@@ -257,5 +267,3 @@ class Calendar {
 	}
 
 }
-
-?>
