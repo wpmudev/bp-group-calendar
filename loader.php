@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: BuddyPress Group Calendar
-Version: 1.4.9
+Version: 1.5.1
 Plugin URI: https://premium.wpmudev.org/project/buddypress-group-calendar/
 Description: Adds event calendar functionality to BuddyPress Groups. Maintain, update and share upcoming group events with really swish calendar functionality.
 Author: WPMU DEV
@@ -43,7 +43,7 @@ if ( ! defined( 'BGC_EMAIL_DEFAULT' ) ) {
 	define( 'BGC_EMAIL_DEFAULT', 'yes' );
 } //yes or no
 
-$bp_group_calendar_current_version = '1.4.9';
+$bp_group_calendar_current_version = '1.5.1';
 
 /* Only load code that needs BuddyPress to run once BP is loaded and initialized. */
 function bp_group_calendar_init() {
@@ -69,5 +69,3 @@ function bp_group_calendar_localization() {
 }
 
 add_action( 'plugins_loaded', 'bp_group_calendar_localization' );
-
-include_once( dirname( __FILE__ ) . '/groupcalendar/dash-notice/wpmudev-dash-notification.php' );
