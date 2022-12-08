@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: BuddyPress Group Calendar
-Version: 1.5.1
+Version: 2.0
 Plugin URI: https://premium.wpmudev.org/project/buddypress-group-calendar/
 Description: Adds event calendar functionality to BuddyPress Groups. Maintain, update and share upcoming group events with really swish calendar functionality.
 Author: WPMU DEV
@@ -13,7 +13,7 @@ WDP ID: 109
 
 Copyright 2009-2017 Incsub (http://incsub.com)
 Author - Aaron Edwards
-Contributors - 
+Contributors -
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License (Version 2 - GPLv2) as published by
@@ -43,11 +43,15 @@ if ( ! defined( 'BGC_EMAIL_DEFAULT' ) ) {
 	define( 'BGC_EMAIL_DEFAULT', 'yes' );
 } //yes or no
 
-$bp_group_calendar_current_version = '1.5.1';
+$bp_group_calendar_current_version = '2.0';
 
 /* Only load code that needs BuddyPress to run once BP is loaded and initialized. */
 function bp_group_calendar_init() {
 	require( dirname( __FILE__ ) . '/groupcalendar/bp-group-calendar.php' );
+	/**
+	 * @since 2.0
+	 */
+	require( dirname( __FILE__ ) . '/groupcalendar/bp-group-calendar-actions.php' );
 }
 
 add_action( 'bp_include', 'bp_group_calendar_init' );
@@ -65,7 +69,7 @@ function bp_group_calendar_localization() {
 	$temp_locales              = explode( '_', get_locale() );
 	$bgc_locale['code']        = ( $temp_locales[0] ) ? $temp_locales[0] : 'en';
 	$bgc_locale['time_format'] = ( false !== strpos( get_option( 'time_format' ), 'H' ) || false !== strpos( get_option( 'time_format' ), 'G' ) ) ? 24 : 12;
-	$bgc_locale['week_start']  = ( get_option( 'start_of_week' ) == '0' ) ? 7 : get_option( 'start_of_week' );
+	$bgc_locale['week_start']  = ( '0' === get_option( 'start_of_week' ) ) ? 7 : get_option( 'start_of_week' );
 }
 
 add_action( 'plugins_loaded', 'bp_group_calendar_localization' );
