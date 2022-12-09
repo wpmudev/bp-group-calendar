@@ -10,7 +10,7 @@ BP Group Calendar
 //------------------------------------------------------------------------//
 
 //include calendar class
-require_once( WP_PLUGIN_DIR . '/bp-group-calendar/groupcalendar/class-calendar.php' );
+require_once( dirname( __FILE__ ) . '/class-calendar.php' );
 
 //------------------------------------------------------------------------//
 
@@ -418,12 +418,21 @@ function bp_group_calendar_reg_activity() {
 }
 
 //adds actions to the group recent actions
+/**
+ * 
+ * @param bool $new
+ * @param int $event_id
+ * @param string $event_date
+ * @param string $event_title
+ * @param bool $event_all_day
+ */
 function bp_group_calendar_event_add_action_message( $new, $event_id, $event_date, $event_title, $event_all_day = false ) {
+    global $current_user;
 	$bp = buddypress();
 
 	$url = bp_group_calendar_create_event_url( $event_id );
 
-	if ( $new ) {
+	if ( true === $new  ) {
 		$created_type     = __( 'created', 'groupcalendar' );
 		$component_action = 'new_calendar_event';
 	} else {
@@ -435,8 +444,8 @@ function bp_group_calendar_event_add_action_message( $new, $event_id, $event_dat
 
 	/* Record this in group activity stream */
 
-	$action  = sprintf( __( '%1$s %2$s an event for the group %3$s:', 'groupcalendar' ), bp_core_get_userlink( $bp->loggedin_user->id ), $created_type, '<a href="' . bp_get_group_permalink( $bp->groups->current_group ) . '">' . esc_attr( $bp->groups->current_group->name ) . '</a>' );
-	$content = '<a href="' . $url . '" title="' . __( 'View Event', 'groupcalendar' ) . '">' . $date . ': ' . stripslashes( $event_title ) . '</a>';
+	$action  = sprintf( __( '%1$s %2$s an event for the group %3$s:', 'groupcalendar' ), bp_core_get_userlink( $current_user->ID ), $created_type, '<a href="' . bp_get_group_permalink( $bp->groups->current_group ) . '">' . esc_attr( $bp->groups->current_group->name ) . '</a> ' );
+	$content = ' <a href="' . $url . '" title="' . __( 'View Event', 'groupcalendar' ) . '">' . $date . ': ' . stripslashes( $event_title ) . '</a> ';
 
 	$activity_id = groups_record_activity(
 		array(
@@ -845,15 +854,15 @@ function bp_group_calendar_js() {
 	if ( ( ! is_admin() ) && ( false !== strpos( $_SERVER['REQUEST_URI'], '/calendar/' ) ) ) {
 		global $bgc_locale;
 
-		wp_enqueue_style( 'groupcalendar-css', plugins_url( '/bp-group-calendar/groupcalendar/group_calendar.css' ), false );
+		wp_enqueue_style( 'groupcalendar-css', plugin_dir_url( __DIR__ ) . 'groupcalendar/group_calendar.css', false );
 
-		wp_enqueue_style( 'jquery-datepicker-css', plugins_url( '/bp-group-calendar/groupcalendar/datepicker/css/smoothness/jquery-ui-1.10.3.custom.min.css' ), '1.10.3' );
+		wp_enqueue_style( 'jquery-datepicker-css', plugin_dir_url( __DIR__ ) . 'groupcalendar/datepicker/css/smoothness/jquery-ui-1.10.3.custom.min.css', '1.10.3' );
 
 		wp_enqueue_script( 'jquery-ui-datepicker' );
 
 		//only load languages for datepicker if not english (or it will show Chinese!)
 		if ( 'en' !== $bgc_locale['code'] ) {
-			wp_enqueue_script( 'jquery - datepicker - i18n', plugins_url( '/bp-group-calendar/groupcalendar/datepicker/js/jquery-ui-i18n.min.js' ), array( 'jquery - ui - datepicker' ) );
+			wp_enqueue_script( 'jquery - datepicker - i18n', plugin_dir_url( __DIR__ ) . 'groupcalendar/datepicker/js/jquery-ui-i18n.min.js', array( 'jquery - ui - datepicker' ) );
 		}
 	}
 }
@@ -1224,7 +1233,7 @@ function bp_group_calendar_widget_event_display( $event_id ) {
 
 	$map_url = 'https://maps.google.com/maps?hl=' . $bgc_locale['code'] . '&q=' . urlencode( stripslashes( $event->event_location ) );
 
-	$event_created_by    = bp_core_get_userlink( $event->user_id );
+	$event_created_by    = bp_core_get_userlink( $event->user_id ). $event->user_id;
 	$event_created       = bgc_date_display( $event->created_stamp, get_option( 'date_format' ) . __( ' \a\t ', 'groupcalendar' ) . get_option( 'time_format' ), $event->event_all_day );
 	$event_modified_by   = bp_core_get_userlink( $event->last_edited_id );
 	$event_last_modified = bgc_date_display( $event->last_edited_stamp, get_option( 'date_format' ) . __( ' \a\t ', 'groupcalendar' ) . get_option( 'time_format' ) );
@@ -1796,7 +1805,7 @@ class BP_Group_Calendar_Widget_User_Groups extends WP_Widget {
 	}
 
 	function widget( $args, $instance ) {
-		global $wpdb, $current_user, $bp;
+		global $wpdb, $current_user;
 
 		//only show widget to logged in users
 		if ( ! is_user_logged_in() ) {

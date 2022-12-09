@@ -2,7 +2,7 @@
 /*
 Plugin Name: BuddyPress Group Calendar
 Version: 2.0
-Plugin URI: https://premium.wpmudev.org/project/buddypress-group-calendar/
+Plugin URI: https://github.com/wpmudev/bp-group-calendar
 Description: Adds event calendar functionality to BuddyPress Groups. Maintain, update and share upcoming group events with really swish calendar functionality.
 Author: WPMU DEV
 Author URI: http://premium.wpmudev.org/
@@ -56,11 +56,17 @@ function bp_group_calendar_init() {
 
 add_action( 'bp_include', 'bp_group_calendar_init' );
 
+/**
+ *
+ * @global type $bgc_locale
+ *
+ * @version 2.0
+ */
 function bp_group_calendar_localization() {
 	global $bgc_locale;
 	// Load up the localization file if we're using WordPress in a different language
 	// Place it in this plugin's "languages" folder and name it "groupcalendar-[value in wp-config].mo"
-	load_plugin_textdomain( 'groupcalendar', false, '/bp-group-calendar/languages' );
+	load_plugin_textdomain( 'groupcalendar', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	if ( get_locale() ) {
 		setlocale( LC_TIME, get_locale() );
 	} //for date translations in php
@@ -72,4 +78,4 @@ function bp_group_calendar_localization() {
 	$bgc_locale['week_start']  = ( '0' === get_option( 'start_of_week' ) ) ? 7 : get_option( 'start_of_week' );
 }
 
-add_action( 'plugins_loaded', 'bp_group_calendar_localization' );
+add_action( 'init', 'bp_group_calendar_localization' );
