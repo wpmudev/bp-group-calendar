@@ -312,7 +312,7 @@ function bp_group_calendar_event_save() {
 
 		$event_description = wp_filter_post_kses( wpautop( $_POST['event-desc'] ) );
 		$event_location    = esc_attr( strip_tags( trim( $_POST['event-loc'] ) ) );
-		$event_map         = ( isset( $_POST['event-map'] ) && 1 === $_POST['event-map'] ) ? 1 : 0;
+		$event_map         = ( isset( $_POST['event-map'] ) && 1 === (int) $_POST['event-map'] ) ? 1 : 0;
 		$event_all_day     = (int) ( ! empty( $_POST['event-all-day'] ) );
 
 		//editing previous event
@@ -1486,7 +1486,7 @@ function bp_group_calendar_widget_edit_event( $event_id = false ) {
 
 		$event_description = stripslashes( wp_filter_post_kses( $_POST['event-desc'] ) );
 		$event_location    = esc_attr( strip_tags( trim( stripslashes( $_POST['event-loc'] ) ) ) );
-		$event_map         = ( 1 === $_POST['event-map'] ) ? ' checked="checked"' : '';
+		$event_map         = ( 1 === (int)$_POST['event-map'] ) ? ' checked="checked"' : '';
 		$event_all_day     = checked( $_POST['event-all-day'], '1', false );
 
 	}
