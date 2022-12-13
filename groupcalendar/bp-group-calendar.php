@@ -1512,7 +1512,7 @@ function bp_group_calendar_widget_edit_event( $event_id = false ) {
 					$bgc_locale['time_format'] = 23;
 				}
 				for ( $i = 1; $i <= $bgc_locale['time_format']; $i ++ ) {
-					$hour_check = ( $i === $event_hour ) ? ' selected="selected"' : '';
+					$hour_check = ( $i ===(int)$event_hour ) ? ' selected="selected"' : '';
 					echo '<option value="' . $i . '"' . $hour_check . '>' . $i . "</option>\n";
 				}
 				?>
@@ -1756,6 +1756,11 @@ class BP_Group_Calendar_Widget_Single extends WP_Widget {
 		return $instance;
 	}
 
+	/**
+	 * 
+	 * @global type $wpdb
+	 * @param array $instance
+	 */
 	function form( $instance ) {
 		global $wpdb;
 		$instance   = wp_parse_args(
@@ -1767,7 +1772,14 @@ class BP_Group_Calendar_Widget_Single extends WP_Widget {
 		);
 		$title      = strip_tags( $instance['title'] );
 		$num_events = strip_tags( $instance['num_events'] );
-		$group_id   = $instance['group_id'];
+		if (array_key_exists('group_id',$instance)){
+		    $group_id   = $instance['group_id'];
+		}
+		else {
+		    $group_id = '';
+		}
+		
+	
 		?>
 		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'groupcalendar' ); ?> <input
 					class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
@@ -1782,10 +1794,11 @@ class BP_Group_Calendar_Widget_Single extends WP_Widget {
 			<?php
 			$groups = $wpdb->get_results( "SELECT id, name FROM {$wpdb->base_prefix}bp_groups ORDER BY name LIMIT 999" ); //we don't want thousands of groups in the dropdown.
 			if ( $groups ) {
-				echo '<p><label for="' . $this->get_field_id( 'group_id' ) . '">' . __( 'Group:', 'groupcalendar' ) . ' <select class="widefat" id="' . $this->get_field_id( 'group_id' ) . '" name="' . $this->get_field_name( 'group_id' ) . '">';
+				echo '<p><label for="' . $this->get_field_id( 'group_id' ) . '">' . __( 'Group:', 'groupcalendar' ) . ''
+				. ' <select class="widefat" id="' . $this->get_field_id( 'group_id' ) . '" name="' . $this->get_field_name( 'group_id' ) . '">';
 
 				foreach ( $groups as $group ) {
-					echo '<option value="' . $group->id . '"' . ( ( $group_id === $group->id ) ? ' selected="selected"' : '' ) . '>' . esc_attr( $group->name ) . '</option>';
+					echo '<option value="' . $group->id . '"' . ( ( $group_id === (int)$group->id ) ? ' selected="selected"' : '' ) . '>' . esc_attr( $group->name ) . '</option>';
 				}
 
 				echo '</select></label></p>';
