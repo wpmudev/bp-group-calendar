@@ -1,502 +1,502 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: groupcalendar\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-03 10:57+0200\n"
-"PO-Revision-Date: 2014-11-03 10:57+0200\n"
-"Last-Translator: Lena Stergatu <stergatu@cti.gr>\n"
-"Language-Team: \n"
-"Language: el_GR\n"
+"Project-Id-Version: BuddyPress Group Calendar\n"
+"POT-Creation-Date: 2022-12-09 11:08+0200\n"
+"PO-Revision-Date: 2022-12-09 11:09+0200\n"
+"Last-Translator: Lena Stergatou <aqua6617@yahoo.com>\n"
+"Language-Team: Lena Stergatou <aqua6617@yahoo.com>\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: __;_e\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.3\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: loader.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.6.10\n"
-"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\blogsRun\\wp-content\\plugins\\bp-"
-"group-calendar\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:105
+#: groupcalendar/bp-group-calendar-actions.php:28
+msgid "Groups Events"
+msgstr "Εκδηλώσεις Ομάδων"
+
+#: groupcalendar/bp-group-calendar-actions.php:31
+#: groupcalendar/bp-group-calendar.php:1694
+msgid "Single Group Events"
+msgstr "Εκδήλώσεις μιας ομάδας"
+
+#: groupcalendar/bp-group-calendar-actions.php:34
+#: groupcalendar/bp-group-calendar.php:1804
+msgid "User's Group Events"
+msgstr "Εκδηλώσεις που αφορούν τον χρήστη"
+
+#: groupcalendar/bp-group-calendar-actions.php:42
+#: groupcalendar/bp-group-calendar-actions.php:49
+#: groupcalendar/bp-group-calendar-actions.php:56
+msgid "Main"
+msgstr "Μόνο στον κεντρικό"
+
+#: groupcalendar/bp-group-calendar-actions.php:43
+#: groupcalendar/bp-group-calendar-actions.php:50
+#: groupcalendar/bp-group-calendar-actions.php:57
+msgid "All"
+msgstr "Σε όλους"
+
+#: groupcalendar/bp-group-calendar.php:140
 msgid "Calendar"
-msgstr "Ημερολόγιο Εκδηλώσεων"
+msgstr "Ημερολόγιο"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:242
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:546
+#: groupcalendar/bp-group-calendar.php:275
+#: groupcalendar/bp-group-calendar.php:666
 msgid "There was a security problem"
 msgstr "Παρουσιάστηκε πρόβλημα ασφαλείας"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:248
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1264
+#: groupcalendar/bp-group-calendar.php:282
+#: groupcalendar/bp-group-calendar.php:1402
 msgid "You don't have permission to edit events"
-msgstr "Δεν έχετε δικαιώματα επεξεργασίας εκδηλώσεων"
+msgstr "Δεν έχετε δικαιώματα επεξεργασίας γεγονότων"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:258
+#: groupcalendar/bp-group-calendar.php:293
 msgid "An event title is required"
-msgstr "Ο τίτλος της εκδήλωσης είναι υποχρεωτικός"
+msgstr "Ο τίτλος είναι υποχρεωτικός"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:268
+#: groupcalendar/bp-group-calendar.php:308
 msgid "Please enter a valid event date."
-msgstr "Συμπληρώστε έγκυρη ημερομηνία εκδήλωσης."
+msgstr "Συμπληρώστε έγκυρη ημερομηνία."
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:284
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1289
+#: groupcalendar/bp-group-calendar.php:326
+#: groupcalendar/bp-group-calendar.php:1418
 msgid "You don't have permission to edit that event"
-msgstr "Δεν έχετε δικαίωμα επεξεργασίας της εκδήλωσης"
+msgstr "Δεν έχετε δικαίωμα επεξεργασίας του γεγονότος"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:294
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:311
+#: groupcalendar/bp-group-calendar.php:349
+#: groupcalendar/bp-group-calendar.php:397
 msgid "Event saved"
-msgstr "Η εκδήλωση αποθηκεύτηκε."
+msgstr "Η εκδήλωση//σημαντική ημερομηνία αποθηκεύτηκε."
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:301
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:319
+#: groupcalendar/bp-group-calendar.php:356
+#: groupcalendar/bp-group-calendar.php:405
 msgid "There was a problem saving to the DB"
 msgstr "Παρουσιάστηκε πρόβλημα κατά την αποθήκευση στη βάση δεδομένων"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:329
+#: groupcalendar/bp-group-calendar.php:374
+msgid "Looks like you are creating a duplicate event!"
+msgstr "Φαίνεται ότι δημιουργείτε διπλοεγγραφή για μία εκδήλωση!"
+
+#: groupcalendar/bp-group-calendar.php:416
 msgid "New group event"
-msgstr "Νέα εκδήλωση ομάδας"
+msgstr "Νέα εκδήλωση/σημαντική ημερομηνία ομάδας"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:330
+#: groupcalendar/bp-group-calendar.php:417
 msgid "Modified group event"
-msgstr "Τροποποιημένη εκδήλωση ομάδας"
+msgstr "Τροποποιημένη εκδήλωση/σημαντικής ημερομηνίας ομάδας"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:340
+#: groupcalendar/bp-group-calendar.php:436
 msgid "created"
 msgstr "δημιούργησε"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:343
+#: groupcalendar/bp-group-calendar.php:439
 msgid "modified"
 msgstr "τροποποίησε"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:350
+#: groupcalendar/bp-group-calendar.php:447
 #, php-format
-msgid "%s %s an event for the group %s:"
-msgstr "%s %s μια εκδήλωση στην ομάδα %s:"
+msgid "%1$s %2$s an event for the group %3$s:"
+msgstr "Η/ο %1$s %2$s μία εκδήλωση για την ομάδα %3$s:"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:351
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:877
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1523
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1608
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1725
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1803
+#: groupcalendar/bp-group-calendar.php:448
+#: groupcalendar/bp-group-calendar.php:1016
+#: groupcalendar/bp-group-calendar.php:1636
+#: groupcalendar/bp-group-calendar.php:1731
+#: groupcalendar/bp-group-calendar.php:1849
 msgid "View Event"
-msgstr "Περισσότερα για την εκδήλωση"
+msgstr "Προβολή Εκδήλωσης"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:383
+#: groupcalendar/bp-group-calendar.php:483
 #, php-format
-msgid "%s created a new event for your group %s"
-msgstr "%s δημιούργησε μια εκδήλωση στην ομάδα %s"
+msgid "%1$s created a new event for your group %2$s"
+msgstr "Η/ο %1$s δημιούργησε μια νέα εκδήλωση για την ομάδα σας %2$s"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:405
+#: groupcalendar/bp-group-calendar.php:507
 #, php-format
 msgid ""
-"%s:\n"
+"%1$s:\n"
 "---------------------\n"
-"\n"
-"%s\n"
-"%s\n"
-"\n"
+"%2$s\n"
+"%3$s\n"
 "Description:\n"
-"%s\n"
-"\n"
+"%4$s\n"
 "Location:\n"
-"%s\n"
-"\n"
+"%5$s\n"
 "---------------------\n"
-"View this Event: %s\n"
-"View this Group: %s\n"
-"\n"
-"%s\n"
+"View this Event: %6$s\n"
+"View this Group: %7$s\n"
+"%8$s\n"
 msgstr ""
-"%s:\n"
+"%1$s:\n"
 "---------------------\n"
-"\n"
-"%s\n"
-"%s\n"
-"\n"
-"Πληροφορίες για την εκδήλωση:\n"
-"%s\n"
-"\n"
+"%2$s\n"
+"%3$s\n"
+"Περιγραφή: __________:\n"
+"%4$s\n"
 "Τοποθεσία:\n"
-"%s\n"
-"\n"
+"%5$s\n"
 "---------------------\n"
-"Περισσότερα για την εκδήλωση: %s\n"
-"Περισσότερα για την ομάδα: %s\n"
-"\n"
-"%s\n"
+"Δείτε αυτή την εκδήλωση: %6$s\n"
+"Δείτε αυτή την ομάδα: %7$s\n"
+"%8$s\n"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:424
+#: groupcalendar/bp-group-calendar.php:532
 #, php-format
 msgid "To unsubscribe from these emails please login and visit: %s"
 msgstr ""
-"Για να σταματήσετε να λαμβάνετε emails σχετικά με τις εκδηλώσεις παρακαλώ "
-"συνδεθείτε και επισκεφτείτε: %s"
+"Για να σταματήσετε να λαμβάνετε σχετικά emails παρακαλώ συνδεθείτε και "
+"επισκεφτείτε: %s"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:551
+#: groupcalendar/bp-group-calendar.php:672
 msgid "You do not have permission to delete events"
-msgstr "Δεν έχετε δικαιώματα διαγραφής εκδηλώσεων"
+msgstr "Δεν έχετε δικαιώματα διαγραφής γεγονότων"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:560
+#: groupcalendar/bp-group-calendar.php:682
 msgid "You don't have permission to delete that event"
-msgstr "Δεν έχετε δικαίωμα διαγραφής της εκδήλωσης"
+msgstr "Δεν έχετε δικαίωμα διαγραφής του γεγονότος"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:569
+#: groupcalendar/bp-group-calendar.php:691
 msgid "There was a problem deleting"
-msgstr "Παρουσιάστηκε πρόβλημα κατά τη διαγραφή "
+msgstr "Παρουσιάστηκε πρόβλημα κατά τη διαγραφή"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:577
+#: groupcalendar/bp-group-calendar.php:700
 msgid "Event deleted successfully"
-msgstr "Η εκδήλωση διαγράφηκε επιτυχώς"
+msgstr "Το γεγονός διαγράφηκε επιτυχώς"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:640
+#: groupcalendar/bp-group-calendar.php:763
 msgid "Group Calendar Settings"
-msgstr "Ρυθμίσεις Εκδηλώσεων Ομάδας"
+msgstr "Ρυθμίσεις ημερολογίου ομάδας"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:641
+#: groupcalendar/bp-group-calendar.php:764
 msgid "Moderator Capabilities"
-msgstr "Δικαιώματα Συντονιστών"
+msgstr "Δικαιώματα συντονιστών"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:653
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:691
+#: groupcalendar/bp-group-calendar.php:772
+#: groupcalendar/bp-group-calendar.php:798
 msgid "Create events / Edit all events"
-msgstr "Δημιουργία εκδηλώσεων/ Διαχείριση όλων των εκδηλώσεων"
+msgstr "Δημιουργία γεγονότων/ Διαχείριση όλων"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:664
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:702
+#: groupcalendar/bp-group-calendar.php:779
+#: groupcalendar/bp-group-calendar.php:805
 msgid "Create events / Edit own events"
-msgstr "Δημιουργία εκδηλώσεων / Διαχείριση μόνο των δικών τους εκδηλώσεων"
+msgstr "Δημιουργία γεγονότων / Διαχείριση μόνο των δικών τους "
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:670
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:708
+#: groupcalendar/bp-group-calendar.php:786
+#: groupcalendar/bp-group-calendar.php:812
 msgid "No capabilities"
-msgstr "Καθόλου δικαιώματα"
+msgstr "Χωρίς δικαιώματα"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:676
+#: groupcalendar/bp-group-calendar.php:789
 msgid "Member Capabilities"
-msgstr "Δικαιώματα Μελών"
+msgstr "Δυνατότητες μέλους"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:712
-msgid "Enable Email Notification of New Events"
-msgstr "Ενεργοποίηση ενημερώσεων μέσω email για κάθε νέα εκδήλωση"
+#: groupcalendar/bp-group-calendar.php:814
+msgid "Enable Email Notification of new Events"
+msgstr ""
+"Ενεργοποίηση ειδοποίησης μέσω ηλεκτρονικού ταχυδρομείου για νέα συμβάντα"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:713
+#: groupcalendar/bp-group-calendar.php:815
 msgid "Individual users can disable notifications"
-msgstr "Τα μέλη μπορούν να απενεργοποιήσουν τις ειδοποιήσεις"
+msgstr "Οι μεμονωμένοι χρήστες μπορούν να απενεργοποιήσουν τις ειδοποιήσεις"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:714
+#: groupcalendar/bp-group-calendar.php:817
 msgid "Yes"
 msgstr "Ναι"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:715
+#: groupcalendar/bp-group-calendar.php:819
 msgid "No"
 msgstr "Όχι"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:728
+#: groupcalendar/bp-group-calendar.php:833
 msgid "A new group event is created"
-msgstr "Καταχωρείται μία νέα εκδήλωση ομάδας"
+msgstr "Καταχωρείται μία νέα εκδήλωση/γεγονός ομάδας"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:769
+#: groupcalendar/bp-group-calendar.php:885
 msgid "Are you sure you want to delete this event?"
-msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε την εκδήλωση;"
+msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε το συμβάν?"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:827
+#: groupcalendar/bp-group-calendar.php:967
 msgid "There are no scheduled events"
-msgstr "Δεν υπάρχουν προγραμματισμένες εκδηλώσεις"
+msgstr "Δεν υπάρχουν προγραμματισμένα γεγονότα"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:838
+#: groupcalendar/bp-group-calendar.php:979
 msgid "There are no events scheduled for this month"
-msgstr "Δεν υπάρχουν προγραμματισμένες εκδηλώσεις για αυτό τον μήνα"
+msgstr "Δεν υπάρχουν προγραμματισμένα γεγονότα για αυτό τον μήνα"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:844
+#: groupcalendar/bp-group-calendar.php:986
 msgid "There are no events scheduled for this day"
-msgstr "Δεν υπάρχουν προγραμματισμένες εκδηλώσεις για αυτή τη μέρα"
+msgstr "Δεν υπάρχουν προγραμματισμένες εκδηλώσεις για αυτήν την ημέρα"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:851
+#: groupcalendar/bp-group-calendar.php:992
 msgid "There are no upcoming events"
-msgstr "Δεν υπάρχουν μελλοντικές εκδηλώσεις"
+msgstr "Δεν υπάρχουν μελλοντικά γεγονότα"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:859
+#: groupcalendar/bp-group-calendar.php:997
 msgid "You have no scheduled events"
-msgstr "Δεν έχετε προγραμματισμένες εκδηλώσεις"
+msgstr "Δεν έχετε προγραμματισμένα γεγονότα"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:881
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1076
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1415
+#: groupcalendar/bp-group-calendar.php:1020
+#: groupcalendar/bp-group-calendar.php:1231
+#: groupcalendar/bp-group-calendar.php:1497
 msgid "Edit Event"
 msgstr "Επεξεργασία Εκδήλωσης"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:881
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1076
+#: groupcalendar/bp-group-calendar.php:1020
+#: groupcalendar/bp-group-calendar.php:1231
 msgid "Edit"
 msgstr "Επεξεργασία"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:912
+#: groupcalendar/bp-group-calendar.php:1059
 msgid "Day View"
 msgstr "Προβολή Ημέρας"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:921
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:976
+#: groupcalendar/bp-group-calendar.php:1067
+#: groupcalendar/bp-group-calendar.php:1121
 msgid "Events For"
-msgstr "Εκδηλώσεις"
+msgstr "Εκδηλώσεις για"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:959
+#: groupcalendar/bp-group-calendar.php:1106
 msgid "Month View"
-msgstr "Προβολή"
+msgstr "Προβολή Μήνα"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:960
+#: groupcalendar/bp-group-calendar.php:1107
 msgid "F Y"
 msgstr "F Y"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:963
+#: groupcalendar/bp-group-calendar.php:1110
 msgid "Previous Month"
 msgstr "Προηγούμενος Μήνας"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:963
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1006
+#: groupcalendar/bp-group-calendar.php:1110
+#: groupcalendar/bp-group-calendar.php:1155
 msgid "Previous"
-msgstr "Προηγ."
+msgstr "Προηγούμενη"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:964
+#: groupcalendar/bp-group-calendar.php:1111
 msgid "Full Year"
-msgstr "Προβολή όλου του έτους "
+msgstr "Πλήρες Έτος"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:964
+#: groupcalendar/bp-group-calendar.php:1111
 msgid "Year"
 msgstr "Έτος"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:965
+#: groupcalendar/bp-group-calendar.php:1112
 msgid "Next Month"
-msgstr "Επόμενος Μήνας"
+msgstr "Επόμενος μήνας"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:965
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1007
+#: groupcalendar/bp-group-calendar.php:1112
+#: groupcalendar/bp-group-calendar.php:1157
 msgid "Next"
-msgstr "Επομ."
+msgstr "Επόμενο"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1004
+#: groupcalendar/bp-group-calendar.php:1152
 msgid "Year View"
 msgstr "Προβολή Έτους"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1006
+#: groupcalendar/bp-group-calendar.php:1154
 msgid "Previous Year"
 msgstr "Προηγούμενο έτος"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1007
+#: groupcalendar/bp-group-calendar.php:1156
 msgid "Next Year"
-msgstr "Επόμενο Έτος"
+msgstr "Επόμενο έτος"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1040
+#: groupcalendar/bp-group-calendar.php:1192
 msgid "Upcoming Events"
-msgstr "Προσεχείς Εκδηλώσεις"
+msgstr "Επόμενες εκδηλώσεις"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1055
+#: groupcalendar/bp-group-calendar.php:1208
 msgid "My Events"
 msgstr "Οι Εκδηλώσεις μου"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1081
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1083
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1099
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1332
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1334
+#: groupcalendar/bp-group-calendar.php:1237
+#: groupcalendar/bp-group-calendar.php:1239
+#: groupcalendar/bp-group-calendar.php:1254
+#: groupcalendar/bp-group-calendar.php:1452
+#: groupcalendar/bp-group-calendar.php:1454
 msgid " \\a\\t "
-msgstr " \\στις "
+msgstr " στις "
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1085
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1339
+#: groupcalendar/bp-group-calendar.php:1241
+#: groupcalendar/bp-group-calendar.php:1456
 #, php-format
 msgid "Created by %1$s on %2$s. Last modified by %3$s on %4$s."
 msgstr ""
-"Δημιουργήθηκε από %1$s στις %2$s. Τελευταία επεξεργασία από %3$s στις %4$s."
+"Δημιουργήθηκε από %1$s  στις  %2$s. Τροποποιήθηκε τελευταία από %3$s  στις  "
+"%4$s."
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1089
+#: groupcalendar/bp-group-calendar.php:1246
 msgid "Event Details"
-msgstr "Πληροφορίες για την εκδήλωση"
+msgstr "Στοιχεία Εκδήλωσης"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1102
+#: groupcalendar/bp-group-calendar.php:1261
 msgid "Description:"
 msgstr "Περιγραφή:"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1109
+#: groupcalendar/bp-group-calendar.php:1267
 msgid "Location:"
 msgstr "Τοποθεσία:"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1122
+#: groupcalendar/bp-group-calendar.php:1273
 msgid "View Google Map of Event Location"
-msgstr "Εμφάνιση Google Map για την τοποθεσία της εκδήλωσης"
+msgstr "Εμφάνιση Google Map για την τοποθεσία του γεγονότος"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1122
+#: groupcalendar/bp-group-calendar.php:1273
 msgid "Map"
 msgstr "Χάρτης"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1154
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1238
+#: groupcalendar/bp-group-calendar.php:1308
+#: groupcalendar/bp-group-calendar.php:1383
 msgid "Create Event"
-msgstr "Καταχώρηση εκδήλωσης"
+msgstr "Δημιουργία συμβάντος"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1156
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1420
+#: groupcalendar/bp-group-calendar.php:1312
+#: groupcalendar/bp-group-calendar.php:1502
 msgid "Title"
 msgstr "Τίτλος"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1159
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1423
+#: groupcalendar/bp-group-calendar.php:1315
+#: groupcalendar/bp-group-calendar.php:1505
 msgid "Date"
 msgstr "Ημερομηνία"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1185
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1426
+#: groupcalendar/bp-group-calendar.php:1319
+#: groupcalendar/bp-group-calendar.php:1508
 msgid "Time"
 msgstr "Ώρα"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1210
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1451
+#: groupcalendar/bp-group-calendar.php:1350
+#: groupcalendar/bp-group-calendar.php:1541
+msgid "No event time"
+msgstr "Δεν υπάρχει ώρα εκδήλωσης"
+
+#: groupcalendar/bp-group-calendar.php:1354
+#: groupcalendar/bp-group-calendar.php:1545
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1220
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1461
+#: groupcalendar/bp-group-calendar.php:1371
+#: groupcalendar/bp-group-calendar.php:1562
 msgid "Location"
 msgstr "Τοποθεσία"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1225
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1464
+#: groupcalendar/bp-group-calendar.php:1373
+#: groupcalendar/bp-group-calendar.php:1565
 msgid "Show Map Link?"
 msgstr "Εμφάνιση συνδέσμου χάρτη;"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1229
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1466
+#: groupcalendar/bp-group-calendar.php:1376
+#: groupcalendar/bp-group-calendar.php:1567
 msgid "(Note: Location must be an address)"
-msgstr "(Προσοχή: Η τοποθεσία θα πρέπει να είναι διεύθυνση)"
+msgstr "(Σημείωση: Η τοποθεσία πρέπει να είναι μια διεύθυνση)"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1346
+#: groupcalendar/bp-group-calendar.php:1460
 msgid "Delete Event"
-msgstr "Διαγραφή Εκδήλωσης"
+msgstr "Διαγραφή"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1346
+#: groupcalendar/bp-group-calendar.php:1460
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1479
+#: groupcalendar/bp-group-calendar.php:1532
+msgid "am"
+msgstr "πμ"
+
+#: groupcalendar/bp-group-calendar.php:1534
+msgid "pm"
+msgstr "μμ"
+
+#: groupcalendar/bp-group-calendar.php:1578
 msgid "Save Event"
-msgstr "Αποθήκευση εκδήλωσης"
+msgstr "Αποθήκευση"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1492
+#: groupcalendar/bp-group-calendar.php:1593
 msgid "Displays upcoming public group events."
-msgstr "Προβάλλει μελλοντικές εκδηλώσεις των δημόσιων ομάδων."
+msgstr ""
+"Προβάλλει μελλοντικές εκδηλώσεις/σημαντικές ημερομηνίες  των δημόσιων ομάδων."
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1493
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1859
+#: groupcalendar/bp-group-calendar.php:1595
 msgid "Group Events"
-msgstr "Εκδηλώσεις Ομάδων"
+msgstr "Εκδηλώσεις/Γεγονότα Ομάδων"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1531
+#: groupcalendar/bp-group-calendar.php:1646
 msgid "There are no upcoming group events."
-msgstr "Δεν υπάρχουν μελλοντικές εκδηλώσεις."
+msgstr "Δεν υπάρχουν μελλοντικά γεγονότα."
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1563
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1651
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1841
+#: groupcalendar/bp-group-calendar.php:1667
+#: groupcalendar/bp-group-calendar.php:1764
 msgid "Upcoming Group Events"
-msgstr "Μελλοντικές εκδηλώσεις"
+msgstr "Μελλοντικές εκδηλώσεις/γεγονότα"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1567
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1656
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1759
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1845
+#: groupcalendar/bp-group-calendar.php:1674
+#: groupcalendar/bp-group-calendar.php:1772
+#: groupcalendar/bp-group-calendar.php:1886
 msgid "Title:"
 msgstr "Τίτλος:"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1568
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1657
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1760
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1846
+#: groupcalendar/bp-group-calendar.php:1679
+#: groupcalendar/bp-group-calendar.php:1777
+#: groupcalendar/bp-group-calendar.php:1891
 msgid "Number of Events:"
-msgstr "Πλήθος εκδηλώσεων:"
+msgstr "Πλήθος εκδηλώσεων/γεγονότων:"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1577
+#: groupcalendar/bp-group-calendar.php:1692
 msgid "Displays upcoming group events for a single group."
-msgstr "Προβάλλει τις μελλοντικές εκδηλώσεις μίας συγκεκριμένης ομάδας"
+msgstr "Εμφανίζει επερχόμενα συμβάντα ομάδας για μία μόνο ομάδα."
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1578
-msgid "Single Group Events"
-msgstr "Εκδηλώσεις μιας ομάδας"
-
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1616
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1811
+#: groupcalendar/bp-group-calendar.php:1740
 msgid "There are no upcoming events for this group."
-msgstr "Δεν υπάρχουν μελλοντικές εκδηλώσεις για αυτή την ομάδα."
+msgstr "Δεν υπάρχουν μελλοντικά γεγονότα για αυτή την ομάδα."
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1664
+#: groupcalendar/bp-group-calendar.php:1785
 msgid "Group:"
 msgstr "Ομάδα:"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1681
+#: groupcalendar/bp-group-calendar.php:1802
 msgid "Displays upcoming group events for a logged in user's groups."
-msgstr ""
-"Εμφανίζει μελλοντικές εκδηλώσεις από τις ομάδες του συνδεδεμένου χρήστη."
+msgstr "Εμφανίζει μελλοντικά γεγονότα από τις ομάδες του συνδεδεμένου χρήστη."
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1682
-msgid "User's Group Events"
-msgstr "Εκδηλώσεις Μέλους"
-
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1733
+#: groupcalendar/bp-group-calendar.php:1858
 msgid "There are no upcoming events for your groups."
 msgstr ""
-"Δεν υπάρχουν μελλοντικές εκδηλώσεις για τις ομάδες στις οποίες είστε μέλος."
+"Δεν υπάρχουν μελλοντικά γεγονότα για τις ομάδες στις οποίες είστε μέλος."
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1755
+#: groupcalendar/bp-group-calendar.php:1879
 msgid "Your Upcoming Group Events"
-msgstr "Οι μελλοντικές σας εκδηλώσεις"
+msgstr "Οι μελλοντικές σας εκδηλώσεις/γεγονότα"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1774
-msgid "Shows upcoming group events for the currentlly displayed group."
-msgstr "Οι μελλοντικές εκδηλώσεις της εμφανιζόμενης ομάδας"
+#. Plugin Name of the plugin/theme
+msgid "BuddyPress Group Calendar"
+msgstr "BuddyPress Group Calendar"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1775
-msgid "Current Group Events"
-msgstr "Εκδηλώσεις ομάδας"
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/wpmudev/bp-group-calendar"
+msgstr "https://github.com/wpmudev/bp-group-calendar"
 
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1819
-msgid "Add Event"
-msgstr "Προσθήκη εκδήλωσης"
-
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1819
-msgid "Add event"
-msgstr "Προσθήκη εκδήλωσης"
-
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1823
-msgid "View all"
-msgstr "Προβολή όλων"
-
-#: C:\xampp\htdocs\blogsRun\wp-content\plugins\bp-group-calendar/groupcalendar/bp-group-calendar.php:1848
+#. Description of the plugin/theme
 msgid ""
-"If it is used as a widget into a Buddypress group page will pull the "
-"upcoming events for this group, else it won/'t show anything"
+"Adds event calendar functionality to BuddyPress Groups. Maintain, update and "
+"share upcoming group events with really swish calendar functionality."
 msgstr ""
-"Όταν χρησιμοποιείται σε σελίδα ομάδας εμφανίζει τις μελλοντικές εκδηλώσεις "
-"της. Στις υπόλοιπες σελίδες δεν εμφανίζεται."
+"Προσθέτει λειτουργικότητα ημερολογίου εκδηλώσεων στις ομάδες BuddyPress. "
+"Διατηρήστε, ενημερώστε και μοιραστείτε επερχόμενες ομαδικές εκδηλώσεις με "
+"πραγματική λειτουργικότητα ημερολογίου."
 
-#, fuzzy
-#~ msgid ""
-#~ "Please install the latest version of <a href=\"http://premium.wpmudev.org/"
-#~ "project/update-notifications/\" title=\"Download Now &raquo;\">our free "
-#~ "Update Notifications plugin</a> which helps you stay up-to-date with the "
-#~ "most stable, secure versions of WPMU DEV themes and plugins. <a href="
-#~ "\"http://premium.wpmudev.org/wpmu-dev/update-notifications-plugin-"
-#~ "information/\">More information &raquo;</a>"
-#~ msgstr ""
-#~ "Εγκαταστήστε την νεώτερη έκδοση του <a href=\"http://premium.wpmudev.org/"
-#~ "project/update-notifications/\" title=\"Download Now &raquo;\">δωρεάν "
-#~ "Update Notifications plugin</a> ώστε να ενημερώνεστε για τις νέες εκδόσις "
-#~ "των WPMU DEV themes and plugins. <a href=\"http://premium.wpmudev.org/"
-#~ "wpmu-dev/update-notifications-plugin-information/\">Περισσότερες "
-#~ "πληροφορίες &raquo;</a>"
+#. Author of the plugin/theme
+msgid "WPMU DEV"
+msgstr "WPMU DEV"
 
-#~ msgid "%B, %Y"
-#~ msgstr "%B, %Y"
-
-#~ msgid "%x"
-#~ msgstr "%x"
+#. Author URI of the plugin/theme
+msgid "http://premium.wpmudev.org/"
+msgstr "http://premium.wpmudev.org/"

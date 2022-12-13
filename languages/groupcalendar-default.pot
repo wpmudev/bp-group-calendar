@@ -1,414 +1,480 @@
-# Copyright (C) 2014 
-# This file is distributed under the same license as the  package.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version:  \n"
-"Report-Msgid-Bugs-To: http://premium.wpmudev.org/\n"
-"POT-Creation-Date: 2014-09-05 00:22:10+00:00\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: BuddyPress Group Calendar\n"
+"POT-Creation-Date: 2022-12-09 11:08+0200\n"
+"PO-Revision-Date: 2022-12-09 10:35+0200\n"
+"Last-Translator: Lena Stergatou <aqua6617@yahoo.com>\n"
+"Language-Team: Lena Stergatou <aqua6617@yahoo.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-
-#: groupcalendar/bp-group-calendar.php:113
-msgid "Calendar"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:245
-#: groupcalendar/bp-group-calendar.php:566
-msgid "There was a security problem"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:251
-#: groupcalendar/bp-group-calendar.php:1173
-msgid "You don't have permission to edit events"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:261
-msgid "An event title is required"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:271
-msgid "Please enter a valid event date."
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:287
-#: groupcalendar/bp-group-calendar.php:1188
-msgid "You don't have permission to edit that event"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:298
-#: groupcalendar/bp-group-calendar.php:318
-msgid "Event saved"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:305
-#: groupcalendar/bp-group-calendar.php:326
-msgid "There was a problem saving to the DB"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:338
-msgid "New group event"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:339
-msgid "Modified group event"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:349
-msgid "created"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:352
-msgid "modified"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:359
-msgid "%s %s an event for the group %s:"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:360
-#: groupcalendar/bp-group-calendar.php:830
-#: groupcalendar/bp-group-calendar.php:1356
-#: groupcalendar/bp-group-calendar.php:1419
-#: groupcalendar/bp-group-calendar.php:1508
-msgid "View Event"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:393
-msgid "%s created a new event for your group %s"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:414
-msgid ""
-"%s:\n"
-"---------------------\n"
-"\n"
-"%s\n"
-"%s\n"
-"\n"
-"Description:\n"
-"%s\n"
-"\n"
-"Location:\n"
-"%s\n"
-"\n"
-"---------------------\n"
-"View this Event: %s\n"
-"View this Group: %s\n"
-"\n"
-"%s\n"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:434
-msgid "To unsubscribe from these emails please login and visit: %s"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:571
-msgid "You do not have permission to delete events"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:580
-msgid "You don't have permission to delete that event"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:589
-msgid "There was a problem deleting"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:597
-msgid "Event deleted successfully"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:658
-msgid "Group Calendar Settings"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:659
-msgid "Moderator Capabilities"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:663
-#: groupcalendar/bp-group-calendar.php:675
-msgid "Create events / Edit all events"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:665
-#: groupcalendar/bp-group-calendar.php:677
-msgid "Create events / Edit own events"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:667
-#: groupcalendar/bp-group-calendar.php:679
-msgid "No capabilities"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:671
-msgid "Member Capabilities"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:683
-msgid "Enable Email Notification of New Events"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:684
-msgid "Individual users can disable notifications"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:685
-msgid "Yes"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:686
-msgid "No"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:696
-msgid "A new group event is created"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:729
-msgid "Are you sure you want to delete this event?"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:782
-msgid "There are no scheduled events"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:794
-msgid "There are no events scheduled for this month"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:801
-msgid "There are no events scheduled for this day"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:807
-msgid "There are no upcoming events"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:812
-msgid "You have no scheduled events"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:834
-#: groupcalendar/bp-group-calendar.php:1029
-#: groupcalendar/bp-group-calendar.php:1254
-msgid "Edit Event"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:834
-#: groupcalendar/bp-group-calendar.php:1029
-msgid "Edit"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:871
-msgid "Day View"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:878
-#: groupcalendar/bp-group-calendar.php:927
-msgid "Events For"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:913
-msgid "Month View"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:914
-msgid "F Y"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:916
-msgid "Previous Month"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:916
-#: groupcalendar/bp-group-calendar.php:956
-msgid "Previous"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:917
-msgid "Full Year"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:917
-msgid "Year"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:918
-msgid "Next Month"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:918
-#: groupcalendar/bp-group-calendar.php:957
-msgid "Next"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:954
-msgid "Year View"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:956
-msgid "Previous Year"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:957
-msgid "Next Year"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:991
-msgid "Upcoming Events"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1007
-msgid "My Events"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1034
-#: groupcalendar/bp-group-calendar.php:1036
-#: groupcalendar/bp-group-calendar.php:1048
-#: groupcalendar/bp-group-calendar.php:1211
-#: groupcalendar/bp-group-calendar.php:1213
-msgid " \\a\\t "
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1038
-#: groupcalendar/bp-group-calendar.php:1215
-msgid "Created by %1$s on %2$s. Last modified by %3$s on %4$s."
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1043
-msgid "Event Details"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1051
-msgid "Description:"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1058
-msgid "Location:"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1065
-msgid "View Google Map of Event Location"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1065
-msgid "Map"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1099
-#: groupcalendar/bp-group-calendar.php:1153
-msgid "Create Event"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1101
-#: groupcalendar/bp-group-calendar.php:1259
-msgid "Title"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1104
-#: groupcalendar/bp-group-calendar.php:1262
-msgid "Date"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1107
-#: groupcalendar/bp-group-calendar.php:1265
-msgid "Time"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1132
-#: groupcalendar/bp-group-calendar.php:1290
-msgid "Description"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1141
-#: groupcalendar/bp-group-calendar.php:1298
-msgid "Location"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1144
-#: groupcalendar/bp-group-calendar.php:1301
-msgid "Show Map Link?"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1146
-#: groupcalendar/bp-group-calendar.php:1303
-msgid "(Note: Location must be an address)"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1219
-msgid "Delete Event"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1219
-msgid "Delete"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1316
-msgid "Save Event"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1331
-msgid "Displays upcoming public group events."
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1332
-msgid "Group Events"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1364
-msgid "There are no upcoming group events."
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1381
-#: groupcalendar/bp-group-calendar.php:1446
-msgid "Upcoming Group Events"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1385
-#: groupcalendar/bp-group-calendar.php:1451
-#: groupcalendar/bp-group-calendar.php:1537
-msgid "Title:"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1386
-#: groupcalendar/bp-group-calendar.php:1452
-#: groupcalendar/bp-group-calendar.php:1538
-msgid "Number of Events:"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1394
-msgid "Displays upcoming group events for a single group."
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1395
+"X-Generator: Poedit 2.4.3\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: loader.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: groupcalendar/bp-group-calendar-actions.php:28
+msgid "Groups Events"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar-actions.php:31
+#: groupcalendar/bp-group-calendar.php:1694
 msgid "Single Group Events"
 msgstr ""
 
-#: groupcalendar/bp-group-calendar.php:1427
-msgid "There are no upcoming events for this group."
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1457
-msgid "Group:"
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1470
-msgid "Displays upcoming group events for a logged in user's groups."
-msgstr ""
-
-#: groupcalendar/bp-group-calendar.php:1471
+#: groupcalendar/bp-group-calendar-actions.php:34
+#: groupcalendar/bp-group-calendar.php:1804
 msgid "User's Group Events"
 msgstr ""
 
-#: groupcalendar/bp-group-calendar.php:1516
+#: groupcalendar/bp-group-calendar-actions.php:42
+#: groupcalendar/bp-group-calendar-actions.php:49
+#: groupcalendar/bp-group-calendar-actions.php:56
+msgid "Main"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar-actions.php:43
+#: groupcalendar/bp-group-calendar-actions.php:50
+#: groupcalendar/bp-group-calendar-actions.php:57
+msgid "All"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:140
+msgid "Calendar"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:275
+#: groupcalendar/bp-group-calendar.php:666
+msgid "There was a security problem"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:282
+#: groupcalendar/bp-group-calendar.php:1402
+msgid "You don't have permission to edit events"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:293
+msgid "An event title is required"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:308
+msgid "Please enter a valid event date."
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:326
+#: groupcalendar/bp-group-calendar.php:1418
+msgid "You don't have permission to edit that event"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:349
+#: groupcalendar/bp-group-calendar.php:397
+msgid "Event saved"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:356
+#: groupcalendar/bp-group-calendar.php:405
+msgid "There was a problem saving to the DB"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:374
+msgid "Looks like you are creating a duplicate event!"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:416
+msgid "New group event"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:417
+msgid "Modified group event"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:436
+msgid "created"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:439
+msgid "modified"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:447
+#, php-format
+msgid "%1$s %2$s an event for the group %3$s:"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:448
+#: groupcalendar/bp-group-calendar.php:1016
+#: groupcalendar/bp-group-calendar.php:1636
+#: groupcalendar/bp-group-calendar.php:1731
+#: groupcalendar/bp-group-calendar.php:1849
+msgid "View Event"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:483
+#, php-format
+msgid "%1$s created a new event for your group %2$s"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:507
+#, php-format
+msgid ""
+"%1$s:\n"
+"---------------------\n"
+"%2$s\n"
+"%3$s\n"
+"Description:\n"
+"%4$s\n"
+"Location:\n"
+"%5$s\n"
+"---------------------\n"
+"View this Event: %6$s\n"
+"View this Group: %7$s\n"
+"%8$s\n"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:532
+#, php-format
+msgid "To unsubscribe from these emails please login and visit: %s"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:672
+msgid "You do not have permission to delete events"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:682
+msgid "You don't have permission to delete that event"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:691
+msgid "There was a problem deleting"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:700
+msgid "Event deleted successfully"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:763
+msgid "Group Calendar Settings"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:764
+msgid "Moderator Capabilities"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:772
+#: groupcalendar/bp-group-calendar.php:798
+msgid "Create events / Edit all events"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:779
+#: groupcalendar/bp-group-calendar.php:805
+msgid "Create events / Edit own events"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:786
+#: groupcalendar/bp-group-calendar.php:812
+msgid "No capabilities"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:789
+msgid "Member Capabilities"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:814
+msgid "Enable Email Notification of new Events"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:815
+msgid "Individual users can disable notifications"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:817
+msgid "Yes"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:819
+msgid "No"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:833
+msgid "A new group event is created"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:885
+msgid "Are you sure you want to delete this event?"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:967
+msgid "There are no scheduled events"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:979
+msgid "There are no events scheduled for this month"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:986
+msgid "There are no events scheduled for this day"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:992
+msgid "There are no upcoming events"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:997
+msgid "You have no scheduled events"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1020
+#: groupcalendar/bp-group-calendar.php:1231
+#: groupcalendar/bp-group-calendar.php:1497
+msgid "Edit Event"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1020
+#: groupcalendar/bp-group-calendar.php:1231
+msgid "Edit"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1059
+msgid "Day View"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1067
+#: groupcalendar/bp-group-calendar.php:1121
+msgid "Events For"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1106
+msgid "Month View"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1107
+msgid "F Y"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1110
+msgid "Previous Month"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1110
+#: groupcalendar/bp-group-calendar.php:1155
+msgid "Previous"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1111
+msgid "Full Year"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1111
+msgid "Year"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1112
+msgid "Next Month"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1112
+#: groupcalendar/bp-group-calendar.php:1157
+msgid "Next"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1152
+msgid "Year View"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1154
+msgid "Previous Year"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1156
+msgid "Next Year"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1192
+msgid "Upcoming Events"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1208
+msgid "My Events"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1237
+#: groupcalendar/bp-group-calendar.php:1239
+#: groupcalendar/bp-group-calendar.php:1254
+#: groupcalendar/bp-group-calendar.php:1452
+#: groupcalendar/bp-group-calendar.php:1454
+msgid " \\a\\t "
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1241
+#: groupcalendar/bp-group-calendar.php:1456
+#, php-format
+msgid "Created by %1$s on %2$s. Last modified by %3$s on %4$s."
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1246
+msgid "Event Details"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1261
+msgid "Description:"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1267
+msgid "Location:"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1273
+msgid "View Google Map of Event Location"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1273
+msgid "Map"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1308
+#: groupcalendar/bp-group-calendar.php:1383
+msgid "Create Event"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1312
+#: groupcalendar/bp-group-calendar.php:1502
+msgid "Title"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1315
+#: groupcalendar/bp-group-calendar.php:1505
+msgid "Date"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1319
+#: groupcalendar/bp-group-calendar.php:1508
+msgid "Time"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1350
+#: groupcalendar/bp-group-calendar.php:1541
+msgid "No event time"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1354
+#: groupcalendar/bp-group-calendar.php:1545
+msgid "Description"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1371
+#: groupcalendar/bp-group-calendar.php:1562
+msgid "Location"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1373
+#: groupcalendar/bp-group-calendar.php:1565
+msgid "Show Map Link?"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1376
+#: groupcalendar/bp-group-calendar.php:1567
+msgid "(Note: Location must be an address)"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1460
+msgid "Delete Event"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1460
+msgid "Delete"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1532
+msgid "am"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1534
+msgid "pm"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1578
+msgid "Save Event"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1593
+msgid "Displays upcoming public group events."
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1595
+msgid "Group Events"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1646
+msgid "There are no upcoming group events."
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1667
+#: groupcalendar/bp-group-calendar.php:1764
+msgid "Upcoming Group Events"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1674
+#: groupcalendar/bp-group-calendar.php:1772
+#: groupcalendar/bp-group-calendar.php:1886
+msgid "Title:"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1679
+#: groupcalendar/bp-group-calendar.php:1777
+#: groupcalendar/bp-group-calendar.php:1891
+msgid "Number of Events:"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1692
+msgid "Displays upcoming group events for a single group."
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1740
+msgid "There are no upcoming events for this group."
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1785
+msgid "Group:"
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1802
+msgid "Displays upcoming group events for a logged in user's groups."
+msgstr ""
+
+#: groupcalendar/bp-group-calendar.php:1858
 msgid "There are no upcoming events for your groups."
 msgstr ""
 
-#: groupcalendar/bp-group-calendar.php:1533
+#: groupcalendar/bp-group-calendar.php:1879
 msgid "Your Upcoming Group Events"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "BuddyPress Group Calendar"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/wpmudev/bp-group-calendar"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Adds event calendar functionality to BuddyPress Groups. Maintain, update and "
+"share upcoming group events with really swish calendar functionality."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WPMU DEV"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://premium.wpmudev.org/"
 msgstr ""

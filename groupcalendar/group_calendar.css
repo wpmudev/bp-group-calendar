@@ -1,169 +1,169 @@
 /**** Begin Default Theme Styles ***********/
 
 input#event-date {
-    width: 144px;
+	width: 144px;
 }
 
 form#add-event-form select {
-    width: auto;
+	width: auto;
 }
 
 .bp-widget {
-    margin-top: 25px;
-    padding: 5px;
-    border: 1px solid #ccc;
+	margin-top: 25px;
+	padding: 5px;
+	border: 1px solid #ccc;
 }
 
 .bp-widget h4 span {
-    float: right;
-    color: #ccc;
+	float: right;
+	color: #ccc;
 }
 
 .bp-widget h4 a {
-    padding: 0;
+	padding: 0;
 }
 
 table.calendar-view {
-    width: 100%;
-    margin: 0 5%;
+	width: 100%;
+	margin: 0 5%;
 }
 
 table.calendar-view {
-    clear: both;
+	clear: both;
 }
 
 table.calendar-view td.cal-left {
-    width: 300px;
-    vertical-align: middle;
+	width: 300px;
+	vertical-align: middle;
 }
 
 table.calendar-view td.cal-right {
-    padding-left: 50px;
-    vertical-align: middle;
+	padding-left: 50px;
+	vertical-align: middle;
 }
 
 h5.events-title {
-    margin: 0px;
-    margin-bottom: 5px;
-    font-weight: bold;
+	margin: 0px;
+	margin-bottom: 5px;
+	font-weight: bold;
 }
 
 h6.event-label {
-    margin-top: 10px;
-    margin-bottom: 5px;
-    font-style: italic;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	font-style: italic;
 }
 
 div.event-description, div.event-location {
-    margin: 20px;
-    margin-top: 0;
+	margin: 20px;
+	margin-top: 0;
 }
 
 span.event-meta {
-    display: block;
-    margin-bottom: 5px;
-    color: #999999;
-    font-size: 11px;
+	display: block;
+	margin-bottom: 5px;
+	color: #999999;
+	font-size: 11px;
 }
 
 div.year-cal-item {
-    float: left;
-    margin: 1em;
+	float: left;
+	margin: 1em;
 }
 
 div.clear {
-    clear: both;
+	clear: both;
 }
 
 div.widget-error {
-    padding-left: 15px
+	padding-left: 15px
 }
 
 /* Calendar table CSS */
 table.calendar th, table.calendar td {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1em;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
 }
 
 table.calendar caption {
-    margin: 0;
-    padding: .3em 0;
-    background: #ffa51e;
+	margin: 0;
+	padding: .3em 0;
+	background: #ffa51e;
 }
 
 table.calendar th {
-    border-bottom: 1px solid #ccc;
-    font-weight: normal;
-    background: #fff;
-    text-align: center;
+	border-bottom: 1px solid #ccc;
+	font-weight: normal;
+	background: #fff;
+	text-align: center;
 }
 
 table.calendar td {
-    border: 1px solid #fff;
-    padding: .1em .3em;
-    width: 1em;
-    text-align: center;
+	border: 1px solid #fff;
+	padding: .1em .3em;
+	width: 1em;
+	text-align: center;
 }
 
 table.calendar a {
-    color: #000;
-    text-decoration: none;
+	color: #000;
+	text-decoration: none;
 }
 
 table.calendar td.today {
-    background: #ffc;
+	background: #ffc;
 }
 
 table.calendar td.selected {
-    border: 1px dotted #ff7800;
+	border: 1px dotted #ff7800;
 }
 
 table.calendar td.highlighted {
-    background: #fc9;
+	background: #fc9;
 }
 
 table.calendar td:hover, table.calendar td.today:hover,
 table.calendar td.selected:hover, table.calendar td.highlighted:hover {
-    background: #cff;
-    border: 1px solid #09f;
+	background: #cff;
+	border: 1px solid #09f;
 }
 
 table.calendar td.pad {
-    color: #999;
-    background: #fff;
+	color: #999;
+	background: #fff;
 }
 
 table.calendar td.pad:hover {
-    background: none;
-    border: 0;
+	background: none;
+	border: 0;
 }
 
 .sunday, .saturday {
-    background: #f0f0f0;
+	background: #f0f0f0;
 }
 
 #year {
-    padding: 0;
-    width: 500px;
-    list-style: none;
+	padding: 0;
+	width: 500px;
+	list-style: none;
 }
 
 #year:after {
-    content: "";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
+	content: "";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
 }
 
 #year li {
-    float: left;
-    padding: 0 .5em .5em 0;
-    height: 150px;
+	float: left;
+	padding: 0 .5em .5em 0;
+	height: 150px;
 }
 
 .my_event a.event_title {
-    font-size: 110%
+	font-size: 110%
 }
